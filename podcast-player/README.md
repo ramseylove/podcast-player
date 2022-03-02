@@ -2,7 +2,34 @@
 
 ## Prompt
 
-Create a podcast player web application with the following pages:
+Create a podcast player web application.
+
+You may use the following hardcoded podcast feeds:
+
+```js
+const PODCASTS = [
+  {
+    id: 'the-daily',
+    title: 'The Daily',
+    feed: 'https://feeds.simplecast.com/54nAGcIl'
+  },
+  {
+    id: 'crime-junkie',
+    title: 'Crime Junkie',
+    feed: 'https://feeds.simplecast.com/qm_9xx0g'
+  },
+  {
+    id: 'apology-line',
+    title: 'The Apology Line',
+    feed: 'https://rss.art19.com/apology-line'
+  },
+  {
+    id: 'working-it-out',
+    title: 'Mike Birbiglia\'s Working It Out',
+    feed: 'https://workingitout.libsyn.com/rss'
+  }
+];
+```
 
 Acceptance Criteria:
 - A hardcoded list of podcasts are available from the root URL
@@ -22,6 +49,8 @@ Bonus suggestions:
 - Find an integrate a search API to find podcasts
 - Build a persistent audio player. Continue to display the audio element and play sound even when the user navigates away from the episode, [like SoundCloud](https://soundcloud.com/search?q=rick%20astley)
 - Save play progress
+- Include automated tests
+- Package with Electron
 
 ### Deliverables
 
