@@ -1,0 +1,9 @@
+{
+  "short_name": "Podcast Player",
+  "name": "The Ultimate Podcast Player",
+
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
