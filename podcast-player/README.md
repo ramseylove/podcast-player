@@ -9,43 +9,47 @@ You may use the following hardcoded podcast feeds:
 ```js
 const PODCASTS = [
   {
-    id: 'the-daily',
-    title: 'The Daily',
-    feed: 'https://feeds.simplecast.com/54nAGcIl'
+    id: "the-daily",
+    title: "The Daily",
+    feed: "https://feeds.simplecast.com/54nAGcIl",
   },
   {
-    id: 'crime-junkie',
-    title: 'Crime Junkie',
-    feed: 'https://feeds.simplecast.com/qm_9xx0g'
+    id: "crime-junkie",
+    title: "Crime Junkie",
+    feed: "https://feeds.simplecast.com/qm_9xx0g",
   },
   {
-    id: 'apology-line',
-    title: 'The Apology Line',
-    feed: 'https://rss.art19.com/apology-line'
+    id: "apology-line",
+    title: "The Apology Line",
+    feed: "https://rss.art19.com/apology-line",
   },
   {
-    id: 'working-it-out',
-    title: 'Mike Birbiglia\'s Working It Out',
-    feed: 'https://workingitout.libsyn.com/rss'
-  }
+    id: "working-it-out",
+    title: "Mike Birbiglia's Working It Out",
+    feed: "https://workingitout.libsyn.com/rss",
+  },
 ];
 ```
 
 Acceptance Criteria:
+
 - A hardcoded list of podcasts are available from the root URL
 - We can view metadata for a specific podcast (title, description, image(s), episodes list)
 - We can listen to an episode
 
 Suggested Routes:
+
 - `/` Home view with a hardcoded list of podcasts
 - `/show/:showID` See metadata for a specific podcast such as title, description, image(s), and the list of episodes
 - `/show/:showID/:episodeID` See metadata for a specific episode and be able to listen to that episode.
 
 Notes:
+
 - Podcast data is served via RSS feed in XML and not JSON. You can use something like [`fast-xml-parser`](https://github.com/NaturalIntelligence/fast-xml-parser)
 - The [native `<audio>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) has basic audio player functionality and UI. No JavaScript required.
 
 Bonus suggestions:
+
 - Find an integrate a search API to find podcasts
 - Build a persistent audio player. Continue to display the audio element and play sound even when the user navigates away from the episode, [like SoundCloud](https://soundcloud.com/search?q=rick%20astley)
 - Save play progress
@@ -57,7 +61,6 @@ Bonus suggestions:
 - [ ] a PR to [/coachmatt-io/fe-projects](https://github.com/coachmatt-io/fe-projects)
 - [ ] user can navigate to a show and observe metadata
 - [ ] user can navigate to an episode, observe metadata, and listen to that episode
-
 
 ## Getting Started
 
@@ -79,4 +82,3 @@ npm start
 ## Getting Feedback
 
 Submit a PR to [/coachmatt-io/fe-projects](https://github.com/coachmatt-io/fe-projects)
-
