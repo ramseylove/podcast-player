@@ -36,13 +36,14 @@ function EpisodeList({ show }) {
 
   return (
     <div>
+      {/* TODO: handle selectedEpisode */}
       <h3>{show.title}</h3>
       <p>{selectedShow.description}</p>
       <ul>
         {firstTenEpisodes.map((episode) => (
           <li key={episode.guid["#text"]}>
             {episode.title}
-            <button type="button" onClick={() => console.log(episode)}>
+            <button type="button" onClick={() => setSelectedEpisode(episode)}>
               View
             </button>
           </li>
