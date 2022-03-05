@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { getEpisodes } from "../../utils/api-utils";
 
+import EpisodeDetails from "./EpisodeDetails";
+
 function EpisodeList({ show }) {
   const [episodes, setEpisodes] = useState([]);
   const [selectedShow, setSelectedShow] = useState({});
-  const [selectedEpisode, setSelectedEpisode] = useState({});
+  const [selectedEpisode, setSelectedEpisode] = useState();
   const [firstTenEpisodes, setFirstTenEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,7 +33,7 @@ function EpisodeList({ show }) {
   }, [show]);
 
   if (isLoading) {
-    return <div>Loading Episodes....</div>;
+    return <div>Loading Episodes...</div>;
   }
 
   return (
@@ -49,6 +51,9 @@ function EpisodeList({ show }) {
           </li>
         ))}
       </ul>
+      <div>
+        {selectedEpisode && <EpisodeDetails episode={selectedEpisode} />}
+      </div>
     </div>
   );
 }

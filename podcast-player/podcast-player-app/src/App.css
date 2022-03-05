@@ -9,3 +9,21 @@
 .episodelist {
   min-width: 40%;
 }
+
+.episode-container {
+  display: flex;
+}
+.episode-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.podcast-image {
+  height: 40rem;
+  width: 40rem;
+}
+
+.podcast-image img {
+  width: 100%;
+  border-radius: 0.5rem;
+}

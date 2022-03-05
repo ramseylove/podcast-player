@@ -1,19 +1,23 @@
 import React from "react";
+import EpisodePlayer from "./EpisodePlayer";
 
-function EpisodeDetails() {
+function EpisodeDetails({ episode }) {
   return (
     <div>
-      <img src="https://www.fillmurray.com/480/480" alt="Fill Murray" />
-      <div className="episodeInfo">
-        <h2 className="episodeTitle">Episode Title</h2>
-        <p className="pubDate">January 1, 2022</p>
-        <p className="episodeDescription">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia qui
-          voluptatum nam vero cumque eligendi ea, similique laborum
-          exercitationem aspernatur laboriosam illum reprehenderit porro maiores
-          commodi! Velit fugiat corrupti aliquid?
-        </p>
+      <div className="episode-container">
+        <div className="podcast-image">
+          <img src="https://www.fillmurray.com/480/480" alt="Fill Murray" />
+        </div>
+
+        <div className="episode-info">
+          <div className="player-container">
+            <EpisodePlayer content={episode.enclosure} />
+          </div>
+          <h2 className="episodeTitle">{episode.title}</h2>
+          <p className="pubDate">{episode.pubDate}</p>
+        </div>
       </div>
+      <p className="episodeDescription">{episode.description}</p>
     </div>
   );
 }
