@@ -2,10 +2,9 @@ import React from "react";
 
 function Show({ id, title, feed, selectShow }) {
   return (
-    <li>
+    <li className="show-item">
       <h3>{title}</h3>
-      <p>{feed}</p>
-      <button onClick={() => selectShow(id)}>View</button>
+      <button onClick={() => selectShow(id)}>View Episodes</button>
     </li>
   );
 }

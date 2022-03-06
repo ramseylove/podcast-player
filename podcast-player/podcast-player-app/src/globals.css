@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -7,18 +8,86 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.header {
+  color: antiquewhite;
+  margin-top: 0;
+  height: 8rem;
+  background-color: rgb(59, 59, 52);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header h3 {
+  margin: 3rem;
+}
+/*
+* Player in Header
+*/
+.player-container {
+  /* height: 5rem; */
+  /* margin: 2rem; */
+  border: 1px solid lightgrey;
+  width: 40rem;
+  margin-right: 1rem;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.player-info {
+  display: flex;
+  flex-direction: column;
+}
+.player audio {
+  width: 100%;
+  height: 2.2rem;
+}
+.player-title {
+  color: antiquewhite;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0 0 0.4rem 0;
+}
+.player-pubdate {
+  font-weight: 700;
+  font-size: 0.7rem;
+  margin: 0 0 0.7rem 0;
+}
+.player-description {
+  color: antiquewhite;
+  font-weight: 400;
+  font-size: 0.65rem;
+  margin: 0;
+  /* overflow: hidden;
+  max-width: 150ch;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .App {
   display: flex;
 }
 
-.showlist {
+.show-list-container {
   min-width: 30%;
 }
+.show-list {
+  list-style: none;
+}
+.show-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.show-item button {
+  height: fit-content;
+  padding: 0.3rem;
+}
+
 .episode-list-container {
   min-width: 40%;
   margin-left: 2rem;
@@ -27,7 +96,7 @@ code {
 .episode-list {
   list-style: none;
 }
-.episode {
+.episode-item {
   width: 100%;
   text-align: left;
   padding: 0.7rem;
@@ -62,10 +131,11 @@ code {
   width: 100%;
   grid-area: player;
 }
-
-.player {
-  width: 100%;
-}
 .episode-description {
   grid-area: desc;
+}
+.play-button {
+  background: transparent;
+  border: none;
+  fill: lightgray;
 }

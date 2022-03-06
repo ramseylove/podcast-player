@@ -1,9 +1,11 @@
 import React from "react";
 
-function EpisodePlayer({ content }) {
-  const { $length, $type, $url } = content;
+function EpisodePlayer({ episode }) {
+  // const { $length, $type, $url } = content;
   return (
-    <audio controls className="player" src={$url} preload="metadata"></audio>
+    <div className="player">
+      <audio controls src={episode.enclosure.$url} preload="metadata"></audio>
+    </div>
   );
 }
 

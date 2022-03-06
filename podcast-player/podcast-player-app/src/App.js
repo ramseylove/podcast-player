@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import ShowList from "./components/show/ShowList";
 import EpisodeList from "./components/episode/EpisodeList";
+import Header from "./components/header";
 
 function App() {
   const [shows, setShows] = useState([]);
   const [selectedShow, setSelectedShow] = useState({});
+  const [selectedEpisodePlaying, setSelectedEpisodePlaying] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     async function getShows() {
@@ -38,16 +40,23 @@ function App() {
     show = shows.find((show) => show.id === selectedShow);
   }
   return (
-    <div className="App">
-      <div className="showlist">
-        <ShowList shows={shows} selectShow={setSelectedShow} />
-      </div>
-      {selectedShow && show && (
-        <div className="episodelist">
-          <EpisodeList show={show} />
+    <>
+      <Header selectedEpisodePlaying={selectedEpisodePlaying} />
+      <div className="App">
+        <div className="show-list-container">
+          <ShowList shows={shows} selectShow={setSelectedShow} />
         </div>
-      )}
-    </div>
+        {selectedShow && show && (
+          <div className="episodelist">
+            <EpisodeList
+              show={show}
+              selectedEpisodePlaying={selectedEpisodePlaying}
+              setSelectedEpisodePlaying={setSelectedEpisodePlaying}
+            />
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

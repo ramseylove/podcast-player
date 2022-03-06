@@ -1,7 +1,7 @@
 import React from "react";
-import EpisodePlayer from "./EpisodePlayer";
+import { ReactComponent as PlayButton } from "../../assets/SVG/play2.svg";
 
-function EpisodeDetails({ episode }) {
+function EpisodeDetails({ episode, setSelectedEpisodePlaying }) {
   return (
     <div className="episode-content">
       <div className="podcast-image">
@@ -9,9 +9,12 @@ function EpisodeDetails({ episode }) {
       </div>
 
       <div className="episode-info">
-        <div className="player-container">
-          <EpisodePlayer content={episode.enclosure} />
-        </div>
+        <button
+          className="play-button"
+          onClick={() => setSelectedEpisodePlaying(episode)}
+        >
+          <PlayButton />
+        </button>
         <h2 className="episodeTitle">{episode.title}</h2>
         <p className="pubDate">{episode.pubDate}</p>
       </div>

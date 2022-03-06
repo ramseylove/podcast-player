@@ -3,7 +3,7 @@ import Show from "./Show";
 
 function ShowList({ shows, selectShow }) {
   return (
-    <ul>
+    <ul className="show-list">
       {shows.map((show) => (
         <Show
           key={show.id}
