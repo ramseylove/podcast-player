@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.App {
+  display: flex;
+}
+
+.showlist {
+  min-width: 30%;
+}
+.episode-list-container {
+  min-width: 40%;
+  margin-left: 2rem;
+}
+
+.episode-list {
+  list-style: none;
+}
+.episode {
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem;
+  border: 1px solid lightgray;
+  cursor: pointer;
+  background-color: white;
+}
+.episode:hover {
+  background-color: lightgray;
+}
+
+.episode-content {
+  display: grid;
+  margin: 2rem;
+  grid-template-areas:
+    "image player"
+    "desc desc";
+  grid-template-columns: 1fr 2fr;
+}
+
+.podcast-image {
+  width: 15rem;
+  margin-right: 2rem;
+  grid-area: image;
+}
+.podcast-image img {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.episode-info {
+  width: 100%;
+  grid-area: player;
+}
+
+.player {
+  width: 100%;
+}
+.episode-description {
+  grid-area: desc;
+}

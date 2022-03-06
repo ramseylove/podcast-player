@@ -1,5 +1,5 @@
 // import { getShows } from "./utils/api-utils";
-import "./App.css";
+
 import { useEffect, useState } from "react";
 import ShowList from "./components/show/ShowList";
 import EpisodeList from "./components/episode/EpisodeList";

@@ -15,7 +15,7 @@ export async function getEpisodes(url) {
   const data = await res.text();
 
   const parsedXml = parse(data);
-  console.log(data);
+  // console.log(data);
 
   const cleanedEpisodes = parsedXml.rss.channel.item.map((item) => {
     return {

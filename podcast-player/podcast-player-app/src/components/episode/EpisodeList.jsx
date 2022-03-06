@@ -37,20 +37,21 @@ function EpisodeList({ show }) {
   }
 
   return (
-    <div>
+    <div className="episode-list-container">
       {/* TODO: handle selectedEpisode */}
-      <h3>{show.title}</h3>
+      <h2>{show.title}</h2>
       <p>{selectedShow.description}</p>
-      <ul>
+      <div className="episode-list">
         {firstTenEpisodes.map((episode) => (
-          <li key={episode.guid["#text"]}>
+          <button
+            className="episode"
+            key={episode.guid["#text"]}
+            onClick={() => setSelectedEpisode(episode)}
+          >
             {episode.title}
-            <button type="button" onClick={() => setSelectedEpisode(episode)}>
-              View
-            </button>
-          </li>
+          </button>
         ))}
-      </ul>
+      </div>
       <div>
         {selectedEpisode && <EpisodeDetails episode={selectedEpisode} />}
       </div>
