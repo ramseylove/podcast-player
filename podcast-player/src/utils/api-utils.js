@@ -33,7 +33,7 @@ export async function getEpisodes(url) {
       copyright: parsedXml.rss.channel.copyright,
       description: removeHtml(parsedXml.rss.channel.description),
       image: { ...parsedXml.rss.channel.image },
-      episodes: [...cleanedEpisodes],
+      episodes: cleanedEpisodes,
       pubDate: parsedXml.rss.channel.pubDate,
       title: parsedXml.rss.channel.title,
     },
