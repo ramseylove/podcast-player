@@ -17,26 +17,27 @@ export async function getEpisodes(url) {
   const parsedXml = parse(data);
 
   const cleanedEpisodes = parsedXml.rss.channel.item.map((item) => {
+    const pubDate = item.pubDate ? parseDate(item.pubDate) : null;
     return {
       author: item.author,
       description: removeHtml(item.description),
       title: item.title,
       guid: { ...item.guid },
-      pubDate: parseDate(item.pubDate),
+      pubDate: pubDate,
       enclosure: { ...item.enclosure },
     };
   });
-
+  // const recentPubDate = parseDate(parsedXml.rss.channel.pubDate) ?? null;
   const cleanedXML = {
     channel: {
       copyright: parsedXml.rss.channel.copyright,
       description: removeHtml(parsedXml.rss.channel.description),
       image: { ...parsedXml.rss.channel.image },
       episodes: [...cleanedEpisodes],
-      pubDate: parseDate(parsedXml.rss.channel.pubDate),
+      pubDate: parsedXml.rss.channel.pubDate,
       title: parsedXml.rss.channel.title,
     },
   };
-  console.log(cleanedXML);
+  console.log(parsedXml);
   return cleanedXML;
 }
