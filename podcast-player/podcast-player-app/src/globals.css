@@ -103,7 +103,10 @@ body {
   margin-left: 2rem;
 }
 
-.episode-list {
+.show-description {
+  color: inherit;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
 }
 .episode-item {
   color: inherit;
@@ -160,6 +163,7 @@ body {
   font-weight: 500;
   cursor: pointer;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 /*
