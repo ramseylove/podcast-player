@@ -3,8 +3,8 @@ import EpisodePlayer from "./episode/EpisodePlayer";
 
 function Header({ selectedEpisodePlaying }) {
   return (
-    <div className="header">
-      <h3>Ultimate Podcasting</h3>
+    <header className="header">
+      <h1>Ultimate Podcasting</h1>
       {selectedEpisodePlaying && (
         <div className="player-container">
           <div className="player-info">
@@ -17,7 +17,7 @@ function Header({ selectedEpisodePlaying }) {
           <EpisodePlayer episode={selectedEpisodePlaying} />
         </div>
       )}
-    </div>
+    </header>
   );
 }
 

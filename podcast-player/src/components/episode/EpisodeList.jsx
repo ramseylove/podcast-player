@@ -10,7 +10,7 @@ function EpisodeList({
   selectedEpisodePlaying,
   setSelectedEpisodePlaying,
 }) {
-  const [episodes, setEpisodes] = useState([]);
+  const [episodes, setEpisodes] = useState(null);
   const [selectedShow, setSelectedShow] = useState({});
   const [selectedEpisode, setSelectedEpisode] = useState();
   const [firstTenEpisodes, setFirstTenEpisodes] = useState([]);

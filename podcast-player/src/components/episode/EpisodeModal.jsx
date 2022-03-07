@@ -1,8 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom";
 
-import { ReactComponent as PlayButton } from "../../assets/SVG/play2.svg";
-import { ReactComponent as CloseButton } from "../../assets/SVG/cross.svg";
+import { ReactComponent as PlayIcon } from "../../assets/SVG/play2.svg";
+import { ReactComponent as CloseIcon } from "../../assets/SVG/cross.svg";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.onConfirm} />;
@@ -17,7 +16,7 @@ const ModalOverlay = ({
   return (
     <div className="episode-modal">
       <button className="modal-close" onClick={onConfirm}>
-        <CloseButton />
+        <CloseIcon />
       </button>
 
       <div className="modal-image-container">
@@ -28,7 +27,7 @@ const ModalOverlay = ({
           className="play-button"
           onClick={() => setSelectedEpisodePlaying(episode)}
         >
-          <PlayButton />
+          <PlayIcon />
           <span>Play Episode</span>
         </button>
       </div>
