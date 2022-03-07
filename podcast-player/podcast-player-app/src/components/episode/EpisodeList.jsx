@@ -3,9 +3,7 @@ import { useEffect } from "react";
 import { getEpisodes } from "../../utils/api-utils";
 import { ReactComponent as PlayButton } from "../../assets/SVG/play2.svg";
 
-import EpisodeDetails from "./EpisodeDetails";
 import EpisodeModal from "./EpisodeModal";
-import EpisodePlayer from "./EpisodePlayer";
 
 function EpisodeList({
   show,
