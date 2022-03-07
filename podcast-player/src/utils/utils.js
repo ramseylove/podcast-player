@@ -1,7 +1,6 @@
-export function removeHtml(str) {
-  const regex = new RegExp(/<\/?[^>]+(>|$)/, "ig");
-  const cleaned = str.replaceAll(regex, "");
-  return cleaned;
+export function removeHtml(html) {
+  const cleanedDoc = new DOMParser().parseFromString(html, "text/html");
+  return cleanedDoc.body.textContent || "";
 }
 
 export function parseDate(str) {
