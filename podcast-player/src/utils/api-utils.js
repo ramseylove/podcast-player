@@ -31,7 +31,7 @@ export async function getEpisodes(url) {
       },
     };
   });
-  // const recentPubDate = parseDate(parsedXml.rss.channel.pubDate) ?? null;
+
   const cleanedXML = {
     channel: {
       copyright: parsedXml.rss.channel.copyright,
