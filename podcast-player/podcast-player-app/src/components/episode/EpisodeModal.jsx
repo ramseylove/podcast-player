@@ -8,7 +8,12 @@ const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.onConfirm} />;
 };
 
-const ModalOverlay = ({ episode, setSelectedEpisodePlaying, onConfirm }) => {
+const ModalOverlay = ({
+  episode,
+  image,
+  setSelectedEpisodePlaying,
+  onConfirm,
+}) => {
   return (
     <div className="episode-modal">
       <button className="modal-close" onClick={onConfirm}>
@@ -16,7 +21,7 @@ const ModalOverlay = ({ episode, setSelectedEpisodePlaying, onConfirm }) => {
       </button>
 
       <div className="modal-image-container">
-        <img src="https://www.fillmurray.com/480/480" alt="Fill Murray" />
+        <img src={image.url} alt={image.title} />
       </div>
       <div className="controls">
         <button
@@ -49,6 +54,7 @@ function EpisodeModal(props) {
         <ModalOverlay
           onConfirm={props.onConfirm}
           episode={props.episode}
+          image={props.image}
           setSelectedEpisodePlaying={props.setSelectedEpisodePlaying}
         />,
         document.getElementById("modal-root")

@@ -1,4 +1,4 @@
-import { removeHtml } from "./utils";
+import { removeHtml, parseDate } from "./utils";
 import { parse } from "arraybuffer-xml-parser";
 export async function getShows() {
   const url = "http://localhost:3500/podcasts";
@@ -22,7 +22,7 @@ export async function getEpisodes(url) {
       description: removeHtml(item.description),
       title: item.title,
       guid: { ...item.guid },
-      pubDate: item.pubDate,
+      pubDate: parseDate(item.pubDate),
       enclosure: { ...item.enclosure },
     };
   });
@@ -33,7 +33,7 @@ export async function getEpisodes(url) {
       description: removeHtml(parsedXml.rss.channel.description),
       image: { ...parsedXml.rss.channel.image },
       episodes: [...cleanedEpisodes],
-      pubDate: parsedXml.rss.channel.pubDate,
+      pubDate: parseDate(parsedXml.rss.channel.pubDate),
       title: parsedXml.rss.channel.title,
     },
   };

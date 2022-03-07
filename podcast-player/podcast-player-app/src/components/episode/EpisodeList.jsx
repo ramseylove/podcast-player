@@ -49,9 +49,8 @@ function EpisodeList({
   return (
     <div className="right-pane">
       <div className="episode-list-container">
-        {/* TODO: handle selectedEpisode */}
         <h2>{show.title}</h2>
-        <p>{selectedShow.description}</p>
+        <p className="show-description">{selectedShow.description}</p>
         <div className="episode-list">
           {firstTenEpisodes.map((episode) => (
             <button
@@ -68,6 +67,7 @@ function EpisodeList({
           {selectedEpisode && (
             <EpisodeModal
               episode={selectedEpisode}
+              image={selectedShow.image}
               setSelectedEpisodePlaying={setSelectedEpisodePlaying}
               onConfirm={showEpisodeHandler}
             />
