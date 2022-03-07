@@ -24,7 +24,11 @@ export async function getEpisodes(url) {
       title: item.title,
       guid: { ...item.guid },
       pubDate: pubDate,
-      enclosure: { ...item.enclosure },
+      enclosure: {
+        length: item.enclosure.$length,
+        type: item.enclosure.$type,
+        url: item.enclosure.$url,
+      },
     };
   });
   // const recentPubDate = parseDate(parsedXml.rss.channel.pubDate) ?? null;

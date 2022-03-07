@@ -6,7 +6,7 @@ function EpisodePlayer({ episode }) {
     <div className="player">
       <audio
         controls
-        src={episode.enclosure.$url}
+        src={episode.enclosure.url}
         preload="metadata"
         autoPlay
       ></audio>
