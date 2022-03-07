@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { getEpisodes } from "../../utils/api-utils";
+import { ReactComponent as PlayButton } from "../../assets/SVG/play2.svg";
 
 import EpisodeDetails from "./EpisodeDetails";
+import EpisodeModal from "./EpisodeModal";
 import EpisodePlayer from "./EpisodePlayer";
 
 function EpisodeList({
@@ -40,6 +42,11 @@ function EpisodeList({
   if (isLoading) {
     return <div>Loading Episodes...</div>;
   }
+  function showEpisodeHandler(episode) {
+    if (selectedEpisode) {
+      setSelectedEpisode(null);
+    }
+  }
 
   return (
     <div className="right-pane">
@@ -54,16 +61,22 @@ function EpisodeList({
               key={episode.guid["#text"]}
               onClick={() => setSelectedEpisode(episode)}
             >
+              <PlayButton />
               {episode.title}
             </button>
           ))}
         </div>
         <div>
           {selectedEpisode && (
-            <EpisodeDetails
+            <EpisodeModal
               episode={selectedEpisode}
               setSelectedEpisodePlaying={setSelectedEpisodePlaying}
+              onConfirm={showEpisodeHandler}
             />
+            // <EpisodeDetails
+            //   episode={selectedEpisode}
+            //   setSelectedEpisodePlaying={setSelectedEpisodePlaying}
+            // />
           )}
         </div>
       </div>
