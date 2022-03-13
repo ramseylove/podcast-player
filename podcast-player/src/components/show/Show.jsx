@@ -1,12 +1,11 @@
 import React from "react";
 
-import { ReactComponent as PlayButton } from "../../assets/SVG/circle-right.svg";
-
+import ArrowRight from "@mui/icons-material/ArrowRight";
 function Show({ id, title, selectShow }) {
   return (
     <button className="show-item" onClick={() => selectShow(id)}>
       {title}
-      <PlayButton />
+      <ArrowRight />
     </button>
   );
 }

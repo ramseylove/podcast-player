@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { getEpisodes } from "../../utils/api-utils";
 import { ReactComponent as PlayButton } from "../../assets/SVG/play2.svg";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 
 import EpisodeModal from "./EpisodeModal";
 
@@ -41,8 +42,21 @@ function EpisodeList({
     return <div>Loading Episodes...</div>;
   }
   function showEpisodeHandler(episode) {
-    if (selectedEpisode) {
-      setSelectedEpisode(null);
+    if (
+      selectedEpisodePlaying &&
+      selectedEpisodePlaying.guid["#text"] === episode.guid["#text"]
+    ) {
+    }
+  }
+
+  let episodeClass = "episode-list";
+  function handleSelectedEpisode(event, episode) {
+    if (
+      selectedEpisodePlaying &&
+      selectedEpisodePlaying.guid["#text"] === episode.guid["#text"]
+    ) {
+      episodeClass = "episode-list active";
+      setSelectedEpisode(episode);
     }
   }
 
@@ -51,14 +65,14 @@ function EpisodeList({
       <div className="episode-list-container">
         <h2>{show.title}</h2>
         <p className="show-description">{selectedShow.description}</p>
-        <div className="episode-list">
+        <div className={episodeClass}>
           {firstTenEpisodes.map((episode) => (
             <button
               className="episode-item"
               key={episode.guid["#text"]}
               onClick={() => setSelectedEpisode(episode)}
             >
-              <PlayButton />
+              <PlayCircleOutlineIcon fontSize="large" color="secondary" />
               {episode.title}
             </button>
           ))}
@@ -71,10 +85,6 @@ function EpisodeList({
               setSelectedEpisodePlaying={setSelectedEpisodePlaying}
               onConfirm={showEpisodeHandler}
             />
-            // <EpisodeDetails
-            //   episode={selectedEpisode}
-            //   setSelectedEpisodePlaying={setSelectedEpisodePlaying}
-            // />
           )}
         </div>
       </div>

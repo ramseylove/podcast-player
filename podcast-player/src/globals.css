@@ -1,4 +1,5 @@
 :root {
+  --primary-color: rgb(91, 111, 115);
 }
 body {
   margin: 0;
@@ -128,6 +129,11 @@ body {
   fill: darkgray;
 }
 
+.active {
+  background-color: lightgray;
+  fill: darkgray;
+}
+
 .episode-content {
   display: grid;
   margin: 2rem;
@@ -204,7 +210,8 @@ body {
   top: 0.75rem;
   right: 0.75rem;
   background: transparent;
-  fill: darkgray;
+  fill: lightgray;
+  color: lightgray;
   border: none;
   cursor: pointer;
 }

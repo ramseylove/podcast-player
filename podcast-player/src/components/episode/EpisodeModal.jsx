@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom";
 
-import { AiOutlineClose } from "react-icons/ai";
 import { ReactComponent as PlayIcon } from "../../assets/SVG/play2.svg";
 import { ReactComponent as CloseIcon } from "../../assets/SVG/cross.svg";
 import ClearIcon from "@mui/icons-material/Clear";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 
 const Backdrop = (props) => {
   return <div className="backdrop" onClick={props.onConfirm} />;
@@ -18,7 +18,7 @@ const ModalOverlay = ({
   return (
     <div className="episode-modal">
       <button className="modal-close" onClick={onConfirm}>
-        <ClearIcon color="primary" />
+        <ClearIcon color="primary" fontSize="large" />
       </button>
 
       <div className="modal-image-container">
@@ -29,7 +29,7 @@ const ModalOverlay = ({
           className="play-button"
           onClick={() => setSelectedEpisodePlaying(episode)}
         >
-          <PlayIcon />
+          <PlayCircleOutlineIcon fontSize="large" />
           <span>Play Episode</span>
         </button>
       </div>
