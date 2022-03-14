@@ -75,6 +75,7 @@ function App() {
       <div className="App">
         <ShowList
           shows={shows}
+          selectedShow={selectedShow}
           selectShow={setSelectedShow}
           sideBarOpen={sideBarOpen}
           setSideBarOpen={setSideBarOpen}

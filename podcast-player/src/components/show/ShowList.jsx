@@ -15,10 +15,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "space-between",
 }));
 
-function ShowList({ shows, selectShow, sideBarOpen, setSideBarOpen }) {
-  // const toggleDrawer = (sideBarOpen) => (event) => {
-  //   setSideBarOpen(sideBarOpen);
-  // };
+function ShowList({
+  shows,
+  selectShow,
+  selectedShow,
+  sideBarOpen,
+  setSideBarOpen,
+}) {
   return (
     <>
       <Drawer
@@ -40,6 +43,7 @@ function ShowList({ shows, selectShow, sideBarOpen, setSideBarOpen }) {
               title={show.title}
               feed={show.feed}
               selectShow={selectShow}
+              selectedShow={selectedShow}
               setSideBarOpen={setSideBarOpen}
             />
           ))}
