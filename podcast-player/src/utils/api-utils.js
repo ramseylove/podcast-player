@@ -22,7 +22,10 @@ export async function getEpisodes(url) {
       author: item.author,
       description: removeHtml(item.description),
       title: item.title,
-      guid: { ...item.guid },
+      guid: {
+        text: item.guid["#text"],
+        isPermaLink: item.guid.$isPermaLink,
+      },
       pubDate: pubDate,
       enclosure: {
         length: item.enclosure.$length,
@@ -42,6 +45,7 @@ export async function getEpisodes(url) {
       title: parsedXml.rss.channel.title,
     },
   };
-  console.log(parsedXml);
+  console.log("Original:", parsedXml);
+  console.log("Cleaned:", cleanedXML);
   return cleanedXML;
 }

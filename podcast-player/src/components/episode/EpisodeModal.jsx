@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 
-import { ReactComponent as PlayIcon } from "../../assets/SVG/play2.svg";
-import { ReactComponent as CloseIcon } from "../../assets/SVG/cross.svg";
+import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 
@@ -17,9 +16,11 @@ const ModalOverlay = ({
 }) => {
   return (
     <div className="episode-modal">
-      <button className="modal-close" onClick={onConfirm}>
-        <ClearIcon color="primary" fontSize="large" />
-      </button>
+      <div className="modal-close">
+        <IconButton onClick={onConfirm}>
+          <ClearIcon color="primary" fontSize="large" />
+        </IconButton>
+      </div>
 
       <div className="modal-image-container">
         <img src={image.url} alt={image.title} />

@@ -111,9 +111,10 @@ body {
   font-size: 0.8rem;
   margin-bottom: 2rem;
 }
-.episode-item {
+.episode-item-wrapper {
+  /* position: relative; */
   color: inherit;
-  width: 100%;
+  min-width: 50vw;
   text-align: left;
   padding: 0.7rem;
   border: 1px solid lightgray;
@@ -124,9 +125,27 @@ body {
   gap: 0.5rem;
   fill: lightgray;
 }
-.episode-item:hover {
+/* .episode-item-wrapper:hover {
   background-color: lightgray;
-  fill: darkgray;
+} */
+.episode-item-play {
+}
+.episode-item-details {
+  /* position: absolute;
+  text-align: left; 
+  top: 2rem;
+  left: 3.5rem;
+  width: 100%;*/
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.episode-pubdate {
+  font-size: 0.8rem;
+  /* position: absolute;
+  top: 2.8rem;
+  left: 3.9rem; */
+  color: gray;
 }
 
 .active {

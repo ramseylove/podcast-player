@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { getEpisodes } from "../../utils/api-utils";
-import { ReactComponent as PlayButton } from "../../assets/SVG/play2.svg";
+
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import { CardActionArea } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 
 import EpisodeModal from "./EpisodeModal";
@@ -42,11 +46,14 @@ function EpisodeList({
     return <div>Loading Episodes...</div>;
   }
   function showEpisodeHandler(episode) {
-    if (
-      selectedEpisodePlaying &&
-      selectedEpisodePlaying.guid["#text"] === episode.guid["#text"]
-    ) {
+    if (selectedEpisode) {
+      setSelectedEpisode(null);
     }
+    // if (
+    //   selectedEpisodePlaying &&
+    //   selectedEpisodePlaying.guid["#text"] === episode.guid["#text"]
+    // ) {
+    // }
   }
 
   let episodeClass = "episode-list";
@@ -67,14 +74,20 @@ function EpisodeList({
         <p className="show-description">{selectedShow.description}</p>
         <div className={episodeClass}>
           {firstTenEpisodes.map((episode) => (
-            <button
-              className="episode-item"
-              key={episode.guid["#text"]}
-              onClick={() => setSelectedEpisode(episode)}
-            >
-              <PlayCircleOutlineIcon fontSize="large" color="secondary" />
-              {episode.title}
-            </button>
+            <Card className="episode-item-wrapper" key={episode.guid.text}>
+              <IconButton
+                size="large"
+                color="secondary"
+                onClick={() => setSelectedEpisodePlaying(episode)}
+              >
+                <PlayCircleOutlineIcon fontSize="inherit" />
+              </IconButton>
+
+              <CardActionArea onClick={() => setSelectedEpisode(episode)}>
+                <div className="episode-item-details">{episode.title}</div>
+                <div className="episode-pubdate">{episode.pubDate}</div>
+              </CardActionArea>
+            </Card>
           ))}
         </div>
         <div>
