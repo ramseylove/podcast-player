@@ -1,67 +1,67 @@
-import ReactDOM from "react-dom";
-
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import Image from "@jy95/material-ui-image";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-const Backdrop = (props) => {
-  return <div className="backdrop" onClick={props.onConfirm} />;
+const modalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "40%",
+  height: 600,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  overflowY: "scroll",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 };
 
-const ModalOverlay = ({
+function EpisodeModal({
   episode,
   image,
   setSelectedEpisodePlaying,
-  onConfirm,
-}) => {
+  open,
+  onClose,
+}) {
   return (
-    <div className="episode-modal">
-      <div className="modal-close">
-        <IconButton onClick={onConfirm}>
-          <ClearIcon color="primary" fontSize="large" />
-        </IconButton>
-      </div>
+    <Modal
+      open={open}
+      onClose={onClose}
+      aria-labelledby={episode.title}
+      aria-describedby={episode.description}
+    >
+      <Box sx={modalStyle}>
+        <Box sx={{ position: "absolute", top: ".75rem", right: ".75rem" }}>
+          <IconButton onClick={onClose} size="large">
+            <ClearIcon color="primary" fontSize="large" />
+          </IconButton>
+        </Box>
 
-      <div className="modal-image-container">
-        <img src={image.url} alt={image.title} />
-      </div>
-      <div className="controls">
-        <button
-          className="play-button"
-          onClick={() => setSelectedEpisodePlaying(episode)}
-        >
-          <PlayCircleOutlineIcon fontSize="large" />
-          <span>Play Episode</span>
-        </button>
-      </div>
-      <div className="modal-info">
-        <div className="modal-title">
-          <h3>{episode.title}</h3>
-        </div>
-        <p className="modal-pubDate">{episode.pubDate}</p>
-        <p className="modal-description">{episode.description}</p>
-      </div>
-    </div>
-  );
-};
-
-function EpisodeModal(props) {
-  return (
-    <>
-      {ReactDOM.createPortal(
-        <Backdrop onConfirm={props.onConfirm} />,
-        document.getElementById("backdrop-root")
-      )}
-      {ReactDOM.createPortal(
-        <ModalOverlay
-          onConfirm={props.onConfirm}
-          episode={props.episode}
-          image={props.image}
-          setSelectedEpisodePlaying={props.setSelectedEpisodePlaying}
-        />,
-        document.getElementById("modal-root")
-      )}
-    </>
+        <Box sx={{ width: "15rem", boxShadow: 6, mb: 2 }}>
+          <Image src={image.url} alt={image.title} />
+        </Box>
+        <Box sx={{ mb: 4 }}>
+          <Button onClick={() => setSelectedEpisodePlaying(episode)}>
+            <PlayCircleOutlineIcon fontSize="large" />
+            <Typography component="span">Play Episode</Typography>
+          </Button>
+        </Box>
+        <Box>
+          <Typography variant="h5">{episode.title}</Typography>
+          <Typography variant="subtitle1" gutterBottom>
+            {episode.pubDate}
+          </Typography>
+          <Typography variant="body1">{episode.description}</Typography>
+        </Box>
+      </Box>
+    </Modal>
   );
 }
 

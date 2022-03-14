@@ -17,6 +17,7 @@ function EpisodeList({
   selectedEpisodePlaying,
   setSelectedEpisodePlaying,
 }) {
+  const [modalOpen, setModalOpen] = useState(false);
   const [episodes, setEpisodes] = useState(null);
   const [selectedShow, setSelectedShow] = useState({});
   const [selectedEpisode, setSelectedEpisode] = useState();
@@ -51,23 +52,12 @@ function EpisodeList({
     if (selectedEpisode) {
       setSelectedEpisode(null);
     }
-    // if (
-    //   selectedEpisodePlaying &&
-    //   selectedEpisodePlaying.guid["#text"] === episode.guid["#text"]
-    // ) {
-    // }
   }
 
-  // let episodeClass = "episode-list";
-  // function handleSelectedEpisode(event, episode) {
-  //   if (
-  //     selectedEpisodePlaying &&
-  //     selectedEpisodePlaying.guid["#text"] === episode.guid["#text"]
-  //   ) {
-  //     episodeClass = "episode-list active";
-  //     setSelectedEpisode(episode);
-  //   }
-  // }
+  function showEpisodeModalHandler(episode) {
+    setModalOpen(true);
+    setSelectedEpisode(episode);
+  }
 
   return (
     <Box>
@@ -82,7 +72,7 @@ function EpisodeList({
           {firstTenEpisodes.map((episode) => (
             <Card
               key={episode.guid.text}
-              onClick={() => setSelectedEpisode(episode)}
+              onClick={() => showEpisodeModalHandler(episode)}
               disableRipple
             >
               <Box sx={{ display: "flex" }}>
@@ -111,7 +101,8 @@ function EpisodeList({
               episode={selectedEpisode}
               image={selectedShow.image}
               setSelectedEpisodePlaying={setSelectedEpisodePlaying}
-              onConfirm={showEpisodeHandler}
+              onClose={showEpisodeHandler}
+              open={modalOpen}
             />
           )}
         </div>
