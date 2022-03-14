@@ -61,7 +61,7 @@ function EpisodeList({
 
   return (
     <Box>
-      <Box sx={{ width: "75%", ml: 3 }}>
+      <Box sx={{ minWidth: "60%", ml: 5 }}>
         <Typography gutterBottom variant="h3">
           {show.title}
         </Typography>

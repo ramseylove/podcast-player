@@ -27,6 +27,7 @@ const PODCASTS = [
 ];
 
 function App() {
+  const [sideBarOpen, setSideBarOpen] = useState(false);
   const [shows, setShows] = useState([]);
   const [selectedShow, setSelectedShow] = useState({});
   const [selectedEpisodePlaying, setSelectedEpisodePlaying] = useState(null);
@@ -66,19 +67,24 @@ function App() {
   }
   return (
     <>
-      <Header selectedEpisodePlaying={selectedEpisodePlaying} />
+      <Header
+        selectedEpisodePlaying={selectedEpisodePlaying}
+        setSideBarOpen={setSideBarOpen}
+        sideBarOpen={sideBarOpen}
+      />
       <div className="App">
-        <div className="show-list-container">
-          <ShowList shows={shows} selectShow={setSelectedShow} />
-        </div>
+        <ShowList
+          shows={shows}
+          selectShow={setSelectedShow}
+          sideBarOpen={sideBarOpen}
+          setSideBarOpen={setSideBarOpen}
+        />
         {selectedShow && show && (
-          <div className="episodelist">
-            <EpisodeList
-              show={show}
-              selectedEpisodePlaying={selectedEpisodePlaying}
-              setSelectedEpisodePlaying={setSelectedEpisodePlaying}
-            />
-          </div>
+          <EpisodeList
+            show={show}
+            selectedEpisodePlaying={selectedEpisodePlaying}
+            setSelectedEpisodePlaying={setSelectedEpisodePlaying}
+          />
         )}
       </div>
     </>

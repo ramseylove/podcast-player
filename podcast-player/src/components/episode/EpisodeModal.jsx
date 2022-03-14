@@ -54,7 +54,9 @@ function EpisodeModal({
           </Button>
         </Box>
         <Box>
-          <Typography variant="h5">{episode.title}</Typography>
+          <Typography variant="h5" component="h1">
+            {episode.title}
+          </Typography>
           <Typography variant="subtitle1" gutterBottom>
             {episode.pubDate}
           </Typography>
