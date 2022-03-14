@@ -58,27 +58,32 @@ function EpisodeList({
     // }
   }
 
-  let episodeClass = "episode-list";
-  function handleSelectedEpisode(event, episode) {
-    if (
-      selectedEpisodePlaying &&
-      selectedEpisodePlaying.guid["#text"] === episode.guid["#text"]
-    ) {
-      episodeClass = "episode-list active";
-      setSelectedEpisode(episode);
-    }
-  }
+  // let episodeClass = "episode-list";
+  // function handleSelectedEpisode(event, episode) {
+  //   if (
+  //     selectedEpisodePlaying &&
+  //     selectedEpisodePlaying.guid["#text"] === episode.guid["#text"]
+  //   ) {
+  //     episodeClass = "episode-list active";
+  //     setSelectedEpisode(episode);
+  //   }
+  // }
 
   return (
-    <div className="right-pane">
-      <div className="episode-list-container">
-        <h2>{show.title}</h2>
-        <p className="show-description">{selectedShow.description}</p>
-        <div className={episodeClass}>
+    <Box>
+      <Box sx={{ width: "75%", ml: 3 }}>
+        <Typography gutterBottom variant="h3">
+          {show.title}
+        </Typography>
+        <Typography gutterBottom variant="body2">
+          {selectedShow.description}
+        </Typography>
+        <Box sx={{ mt: 3 }}>
           {firstTenEpisodes.map((episode) => (
             <Card
               key={episode.guid.text}
               onClick={() => setSelectedEpisode(episode)}
+              disableRipple
             >
               <Box sx={{ display: "flex" }}>
                 <CardActions>
@@ -99,7 +104,7 @@ function EpisodeList({
               </Box>
             </Card>
           ))}
-        </div>
+        </Box>
         <div>
           {selectedEpisode && (
             <EpisodeModal
@@ -110,8 +115,8 @@ function EpisodeList({
             />
           )}
         </div>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 

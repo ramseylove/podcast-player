@@ -3,15 +3,15 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
   palette: {
     primary: {
-      light: "#757ce8",
-      main: "#3f50b5",
-      dark: "#002884",
+      light: "#cbaea4",
+      main: "##9d858d",
+      dark: "#404e5c",
       contrastText: "#fff",
     },
     secondary: {
-      light: "#ff7961",
-      main: "#f44336",
-      dark: "#ba000d",
+      light: "#d8e2dc",
+      main: "#cbaea4",
+      dark: "#688b58",
       contrastText: "#000",
     },
   },
@@ -26,9 +26,16 @@ export const theme = createTheme({
           h5: "h5",
           h6: "h6",
           subtitle1: "h3",
-          subtitle2: "h3",
+          subtitle2: "subtitle1",
           body1: "span",
           body2: "span",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
         },
       },
     },
