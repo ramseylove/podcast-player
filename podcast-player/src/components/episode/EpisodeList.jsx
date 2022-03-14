@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { getEpisodes } from "../../utils/api-utils";
 
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, CardActions } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 
@@ -74,19 +76,27 @@ function EpisodeList({
         <p className="show-description">{selectedShow.description}</p>
         <div className={episodeClass}>
           {firstTenEpisodes.map((episode) => (
-            <Card className="episode-item-wrapper" key={episode.guid.text}>
-              <IconButton
-                size="large"
-                color="secondary"
-                onClick={() => setSelectedEpisodePlaying(episode)}
-              >
-                <PlayCircleOutlineIcon fontSize="inherit" />
-              </IconButton>
-
-              <CardActionArea onClick={() => setSelectedEpisode(episode)}>
-                <div className="episode-item-details">{episode.title}</div>
-                <div className="episode-pubdate">{episode.pubDate}</div>
-              </CardActionArea>
+            <Card
+              key={episode.guid.text}
+              onClick={() => setSelectedEpisode(episode)}
+            >
+              <Box sx={{ display: "flex" }}>
+                <CardActions>
+                  <IconButton
+                    size="large"
+                    color="secondary"
+                    onClick={() => setSelectedEpisodePlaying(episode)}
+                  >
+                    <PlayCircleOutlineIcon fontSize="inherit" />
+                  </IconButton>
+                </CardActions>
+                <CardActionArea>
+                  <Typography variant="h6" component="div">
+                    {episode.title}
+                  </Typography>
+                  <Typography variant="subtitle1">{episode.pubDate}</Typography>
+                </CardActionArea>
+              </Box>
             </Card>
           ))}
         </div>
