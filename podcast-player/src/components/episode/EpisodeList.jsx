@@ -12,6 +12,12 @@ import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 
 import EpisodeModal from "./EpisodeModal";
 
+const episodeListStyle = {
+  position: "relative",
+  minWidth: "50rem",
+  ml: "20%",
+};
+
 function EpisodeList({
   show,
   selectedEpisodePlaying,
@@ -60,53 +66,51 @@ function EpisodeList({
   }
 
   return (
-    <Box>
-      <Box sx={{ minWidth: "60%", ml: 5 }}>
+    <Box sx={episodeListStyle}>
+      <Box sx={{ width: "50rem" }}>
         <Typography gutterBottom variant="h3">
           {show.title}
         </Typography>
         <Typography gutterBottom variant="body2">
           {selectedShow.description}
         </Typography>
-        <Box sx={{ mt: 3 }}>
-          {firstTenEpisodes.map((episode) => (
-            <Card
-              key={episode.guid.text}
-              onClick={() => showEpisodeModalHandler(episode)}
-              disableRipple
-            >
-              <Box sx={{ display: "flex" }}>
-                <CardActions>
-                  <IconButton
-                    size="large"
-                    color="secondary"
-                    onClick={() => setSelectedEpisodePlaying(episode)}
-                  >
-                    <PlayCircleOutlineIcon fontSize="inherit" />
-                  </IconButton>
-                </CardActions>
-                <CardActionArea>
-                  <Typography variant="h6" component="div">
-                    {episode.title}
-                  </Typography>
-                  <Typography variant="subtitle1">{episode.pubDate}</Typography>
-                </CardActionArea>
-              </Box>
-            </Card>
-          ))}
-        </Box>
-        <div>
-          {selectedEpisode && (
-            <EpisodeModal
-              episode={selectedEpisode}
-              image={selectedShow.image}
-              setSelectedEpisodePlaying={setSelectedEpisodePlaying}
-              onClose={showEpisodeHandler}
-              open={modalOpen}
-            />
-          )}
-        </div>
       </Box>
+      <Box sx={{ mt: 3 }}>
+        {firstTenEpisodes.map((episode) => (
+          <Card
+            key={episode.guid.text}
+            onClick={() => showEpisodeModalHandler(episode)}
+            disableRipple
+          >
+            <Box sx={{ display: "flex" }}>
+              <CardActions>
+                <IconButton
+                  size="large"
+                  color="secondary"
+                  onClick={() => setSelectedEpisodePlaying(episode)}
+                >
+                  <PlayCircleOutlineIcon fontSize="inherit" />
+                </IconButton>
+              </CardActions>
+              <CardActionArea>
+                <Typography variant="h6" component="div">
+                  {episode.title}
+                </Typography>
+                <Typography variant="subtitle1">{episode.pubDate}</Typography>
+              </CardActionArea>
+            </Box>
+          </Card>
+        ))}
+      </Box>
+      {selectedEpisode && (
+        <EpisodeModal
+          episode={selectedEpisode}
+          image={selectedShow.image}
+          setSelectedEpisodePlaying={setSelectedEpisodePlaying}
+          onClose={showEpisodeHandler}
+          open={modalOpen}
+        />
+      )}
     </Box>
   );
 }

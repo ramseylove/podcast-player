@@ -12,39 +12,56 @@ function Header({ selectedEpisodePlaying, setSideBarOpen, sideBarOpen }) {
   return (
     <Box
       sx={{
-        display: "flex",
         flexGrow: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
         bgcolor: "primary.main",
+        // height: "8rem",
       }}
     >
       <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            color="inherit"
-            aria-label="open sidebar"
-            onClick={toggleDrawer(true)}
-            edge="start"
-            sx={{ mr: 2, ml: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <h1>Ultimate Podcasting</h1>
-        </Toolbar>
-        {selectedEpisodePlaying && (
-          <div className="player-container">
-            <div className="player-info">
-              <p className="player-title">{selectedEpisodePlaying.title}</p>
-              <p className="player-pubdate">{selectedEpisodePlaying.pubDate}</p>
-              <p className="player-description">
-                {selectedEpisodePlaying.description}
-              </p>
-            </div>
-            <EpisodePlayer episode={selectedEpisodePlaying} />
-          </div>
-        )}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            height: "8rem",
+          }}
+        >
+          <Toolbar>
+            <IconButton
+              size="large"
+              color="inherit"
+              aria-label="open sidebar"
+              onClick={toggleDrawer(true)}
+              edge="start"
+              sx={{ mr: 2, ml: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <h1>Ultimate Podcasting</h1>
+          </Toolbar>
+          {selectedEpisodePlaying && (
+            <Box
+              sx={{
+                width: "40rem",
+                alignSelf: "stretch",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div className="player-info">
+                <p className="player-title">{selectedEpisodePlaying.title}</p>
+                <p className="player-pubdate">
+                  {selectedEpisodePlaying.pubDate}
+                </p>
+                <p className="player-description">
+                  {selectedEpisodePlaying.description}
+                </p>
+              </div>
+              <EpisodePlayer episode={selectedEpisodePlaying} />
+            </Box>
+          )}
+        </Box>
       </AppBar>
     </Box>
   );
