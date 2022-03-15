@@ -27,7 +27,7 @@ const PODCASTS = [
 ];
 
 function App() {
-  const [sideBarOpen, setSideBarOpen] = useState(false);
+  const [sideBarOpen, setSideBarOpen] = useState(true);
   const [shows, setShows] = useState([]);
   const [selectedShow, setSelectedShow] = useState({});
   const [selectedEpisodePlaying, setSelectedEpisodePlaying] = useState(null);

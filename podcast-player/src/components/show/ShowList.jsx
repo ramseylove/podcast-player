@@ -1,9 +1,8 @@
-import List from "@mui/material/List";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
+import { IconButton, List, Drawer, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React from "react";
 import Show from "./Show";
+import ArrowLeft from "@mui/icons-material/ArrowLeft";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -29,10 +28,19 @@ function ShowList({
         anchor={"left"}
         ModalProps={{ keepMounted: true }}
         sx={{ width: 28, flexShrink: 0, bgcolor: "primary.light" }}
+        aria-label={"Navigation drawer"}
       >
         <DrawerHeader>
-          <h3>Your Shows</h3>
-          <Button onClick={() => setSideBarOpen(false)}>Close</Button>
+          <Typography variant="h5" component="h1">
+            Podcasts
+          </Typography>
+          <IconButton
+            size="large"
+            color="secondary"
+            onClick={() => setSideBarOpen(false)}
+          >
+            <ArrowLeft fontSize="inherit" />
+          </IconButton>
         </DrawerHeader>
         <List>
           {shows.map((show) => (

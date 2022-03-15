@@ -2,18 +2,26 @@ import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import Image from "@jy95/material-ui-image";
-import Dialog from "@mui/material/Dialog";
+
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Container, Modal } from "@mui/material";
 
-const modalStyle = {
+const style = {
+  position: "absolute",
+  height: "80%",
+  overflowY: "scroll",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  maxWidth: { xs: 300, sm: 600 },
 };
 
 function EpisodeModal({
@@ -24,42 +32,51 @@ function EpisodeModal({
   onClose,
 }) {
   return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={onClose}
-        scroll="paper"
-        aria-labelledby={episode.title}
-        aria-describedby={episode.description}
-      >
-        <Box sx={modalStyle}>
-          <Box sx={{ position: "absolute", top: ".75rem", right: ".75rem" }}>
-            <IconButton onClick={onClose} size="large">
-              <ClearIcon color="primary" fontSize="large" />
-            </IconButton>
-          </Box>
-
-          <Box sx={{ width: "15rem", boxShadow: 6, mb: 2 }}>
-            <Image src={image.url} alt={image.title} />
-          </Box>
-          <Box sx={{ mb: 4 }}>
-            <Button onClick={() => setSelectedEpisodePlaying(episode)}>
-              <PlayCircleOutlineIcon fontSize="large" />
-              <Typography component="span">Play Episode</Typography>
-            </Button>
-          </Box>
-          <Box>
-            <Typography variant="h5" component="h1">
-              {episode.title}
-            </Typography>
-            <Typography variant="subtitle1" gutterBottom>
-              {episode.pubDate}
-            </Typography>
-            <Typography variant="body1">{episode.description}</Typography>
-          </Box>
+    <Modal
+      open={open}
+      onClose={onClose}
+      role={"dialog"}
+      aria-labelledby="dialogTitle"
+    >
+      <Container maxWidth={"sm"} sx={style}>
+        <Box sx={{ position: "absolute", top: ".75rem", right: ".75rem" }}>
+          <IconButton onClick={onClose} size="large" aria-label="Close">
+            <ClearIcon color="primary" fontSize="large" />
+          </IconButton>
         </Box>
-      </Dialog>
-    </div>
+
+        <Box sx={{ width: { xs: "8rem", sm: "15rem" }, boxShadow: 6, mb: 2 }}>
+          <Image src={image.url} alt={image.title} />
+        </Box>
+        <Box sx={{ mb: 4 }}>
+          <Button onClick={() => setSelectedEpisodePlaying(episode)}>
+            <PlayCircleOutlineIcon fontSize="large" />
+            <Typography component="span" role="presentation">
+              Play Episode
+            </Typography>
+          </Button>
+        </Box>
+        <Typography
+          variant="h6"
+          component="h1"
+          aria-label={episode.title}
+          id="dialogTitle"
+        >
+          {episode.title}
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          {episode.pubDate}
+        </Typography>
+        <Typography
+          paragraph="true"
+          variant="body1"
+          aria-label={episode.description}
+          id="dialogDescription"
+        >
+          {episode.description}
+        </Typography>
+      </Container>
+    </Modal>
   );
 }
 

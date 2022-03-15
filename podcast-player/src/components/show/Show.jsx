@@ -1,19 +1,20 @@
 import ArrowRight from "@mui/icons-material/ArrowRight";
-import ListItem from "@mui/material/ListItem";
+import { ListItemButton } from "@mui/material";
 function Show({ id, title, selectShow, selectedShow, setSideBarOpen }) {
   function selectShowHandler(id) {
     selectShow(id);
     setSideBarOpen(false);
   }
   return (
-    <ListItem
-      button
+    <ListItemButton
+      role={"link"}
+      component={"li"}
       onClick={() => selectShowHandler(id)}
       selected={selectedShow === id}
     >
       {title}
       <ArrowRight fontSize="large" />
-    </ListItem>
+    </ListItemButton>
   );
 }
 

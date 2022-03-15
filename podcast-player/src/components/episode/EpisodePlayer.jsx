@@ -13,7 +13,9 @@ function EpisodePlayer({ episode }) {
     <Card
       sx={{
         p: ".3rem",
-        width: "40rem",
+        width: {
+          sm: "40rem",
+        },
         alignSelf: "stretch",
         display: "flex",
         flexDirection: "column",
@@ -50,6 +52,7 @@ function EpisodePlayer({ episode }) {
           controls
           src={episode.enclosure.url}
           preload="metadata"
+          autoPlay
         ></PodcastPlayer>
       </CardMedia>
     </Card>
