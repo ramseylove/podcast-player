@@ -3,20 +3,31 @@ import { useEffect } from "react";
 import { getEpisodes } from "../../utils/api-utils";
 
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import { CardActionArea, CardActions } from "@mui/material";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import { makeStyles } from "@mui/material";
 
 import EpisodeModal from "./EpisodeModal";
 
-const episodeListStyle = {
-  position: "relative",
-  minWidth: "50rem",
-  ml: "20%",
-};
+const useStyles = makeStyles({
+  episodeListStyle: {
+    position: "relative",
+    minWidth: "50rem",
+    ml: "20%",
+  },
+  listItem: {
+    "&.Mui-selected": {
+      backgroundColor: "primary.dark",
+      "&.Mui-focusVisible": { background: "pink" },
+    },
+  },
+});
 
 function EpisodeList({
   show,
@@ -29,6 +40,8 @@ function EpisodeList({
   const [selectedEpisode, setSelectedEpisode] = useState();
   const [firstTenEpisodes, setFirstTenEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const classes = useStyles();
 
   useEffect(() => {
     let isCancelled = false;
@@ -54,7 +67,10 @@ function EpisodeList({
   if (isLoading) {
     return <div>Loading Episodes...</div>;
   }
-  function showEpisodeHandler(episode) {
+  function playEpisodeHandler(episode) {
+    setSelectedEpisodePlaying(episode);
+  }
+  function showEpisodeHandler() {
     if (selectedEpisode) {
       setSelectedEpisode(null);
     }
@@ -66,7 +82,7 @@ function EpisodeList({
   }
 
   return (
-    <Box sx={episodeListStyle}>
+    <Box className={classes.episodeListStyle}>
       <Box sx={{ width: "50rem" }}>
         <Typography gutterBottom variant="h3">
           {show.title}
@@ -75,33 +91,32 @@ function EpisodeList({
           {selectedShow.description}
         </Typography>
       </Box>
-      <Box sx={{ mt: 3 }}>
+      <List sx={{ mt: 3 }} aria-label="episode list">
         {firstTenEpisodes.map((episode) => (
-          <Card
+          <ListItem
+            className={classes.listItem}
+            button
             key={episode.guid.text}
             onClick={() => showEpisodeModalHandler(episode)}
-            disableRipple
+            selected={
+              episode &&
+              selectedEpisodePlaying &&
+              episode.guid.text === selectedEpisodePlaying.guid.text
+            }
           >
-            <Box sx={{ display: "flex" }}>
-              <CardActions>
-                <IconButton
-                  size="large"
-                  color="secondary"
-                  onClick={() => setSelectedEpisodePlaying(episode)}
-                >
-                  <PlayCircleOutlineIcon fontSize="inherit" />
-                </IconButton>
-              </CardActions>
-              <CardActionArea>
-                <Typography variant="h6" component="div">
-                  {episode.title}
-                </Typography>
-                <Typography variant="subtitle1">{episode.pubDate}</Typography>
-              </CardActionArea>
-            </Box>
-          </Card>
+            <ListItemIcon>
+              <IconButton
+                size="large"
+                color="secondary"
+                onClick={() => playEpisodeHandler(episode)}
+              >
+                <PlayCircleOutlineIcon fontSize="inherit" />
+              </IconButton>
+            </ListItemIcon>
+            <ListItemText primary={episode.title} secondary={episode.pubDate} />
+          </ListItem>
         ))}
-      </Box>
+      </List>
       {selectedEpisode && (
         <EpisodeModal
           episode={selectedEpisode}

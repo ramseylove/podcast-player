@@ -14,7 +14,6 @@ function Header({ selectedEpisodePlaying, setSideBarOpen, sideBarOpen }) {
       sx={{
         flexGrow: 1,
         bgcolor: "primary.main",
-        // height: "8rem",
       }}
     >
       <AppBar position="static">

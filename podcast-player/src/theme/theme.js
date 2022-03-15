@@ -39,5 +39,16 @@ export const theme = createTheme({
         },
       },
     },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "transparent",
+          "&.Mui-selected": {
+            backgroundColor: "primary.dark",
+            "&.Mui-focusVisible": { background: "primary.dark" },
+          },
+        },
+      },
+    },
   },
 });
