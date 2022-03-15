@@ -4,30 +4,30 @@ import { getEpisodes } from "../../utils/api-utils";
 
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import { makeStyles } from "@mui/material";
+// import { makeStyles } from "@mui/styles";
 
 import EpisodeModal from "./EpisodeModal";
 
-const useStyles = makeStyles({
-  episodeListStyle: {
-    position: "relative",
-    minWidth: "50rem",
-    ml: "20%",
-  },
-  listItem: {
-    "&.Mui-selected": {
-      backgroundColor: "primary.dark",
-      "&.Mui-focusVisible": { background: "pink" },
-    },
-  },
-});
+// const useStyles = makeStyles({
+
+//   listItem: {
+//     "&.Mui-selected": {
+//       backgroundColor: "primary.dark",
+//       "&.Mui-focusVisible": { background: "pink" },
+//     },
+//   },
+// });
+const episodeListStyle = {
+  position: "relative",
+  minWidth: "50rem",
+  ml: "20%",
+};
 
 function EpisodeList({
   show,
@@ -40,8 +40,6 @@ function EpisodeList({
   const [selectedEpisode, setSelectedEpisode] = useState();
   const [firstTenEpisodes, setFirstTenEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const classes = useStyles();
 
   useEffect(() => {
     let isCancelled = false;
@@ -82,7 +80,7 @@ function EpisodeList({
   }
 
   return (
-    <Box className={classes.episodeListStyle}>
+    <Box sx={episodeListStyle}>
       <Box sx={{ width: "50rem" }}>
         <Typography gutterBottom variant="h3">
           {show.title}
@@ -94,8 +92,8 @@ function EpisodeList({
       <List sx={{ mt: 3 }} aria-label="episode list">
         {firstTenEpisodes.map((episode) => (
           <ListItem
-            className={classes.listItem}
             button
+            sx={episodeListStyle}
             key={episode.guid.text}
             onClick={() => showEpisodeModalHandler(episode)}
             selected={
