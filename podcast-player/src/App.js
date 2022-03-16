@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ShowList from "./components/show/ShowList";
 import EpisodeList from "./components/episode/EpisodeList";
 import Header from "./components/ui/header";
+import Loader from "./components/ui/loader";
 
 const PODCASTS = [
   {
@@ -54,7 +55,7 @@ function App() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading Shows</div>;
+    return <Loader />;
   }
 
   let show;

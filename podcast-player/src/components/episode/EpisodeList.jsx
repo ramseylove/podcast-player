@@ -6,6 +6,7 @@ import EpisodeModal from "./EpisodeModal";
 import EpisodeItem from "./EpisodeItem";
 import Loader from "../ui/loader";
 import ErrorAlert from "../ui/errorAlert";
+import AppPagination from "../ui/appPagination";
 
 function EpisodeList({
   show,
@@ -17,8 +18,12 @@ function EpisodeList({
   const [selectedShow, setSelectedShow] = useState({});
   const [selectedEpisode, setSelectedEpisode] = useState();
   const [firstTenEpisodes, setFirstTenEpisodes] = useState([]);
+  const [currentEpisodes, setCurrentEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [episodesPerPage, setEpisodesPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState(null);
 
   /**
    * Getting episodes
@@ -32,8 +37,8 @@ function EpisodeList({
         .then((data) => {
           setSelectedShow({ ...data.channel });
           setEpisodes([...data.channel.episodes]);
-          // temp limiting data
-          setFirstTenEpisodes([...data.channel.episodes].slice(0, 9));
+          // setFirstTenEpisodes([...data.channel.episodes].slice(0, 9));
+          setPageCount(Math.ceil(episodes.length / episodesPerPage));
           setIsLoading(false);
         })
         .catch((error) => {
@@ -41,13 +46,16 @@ function EpisodeList({
           setIsLoading(false);
         });
     }
+
     // cleanup
     return () => {
       isCancelled = true;
     };
   }, [show]);
 
-  if (isLoading) {
+  //TODO: pagination logic
+
+  if (isLoading || !currentEpisodes) {
     return <Loader />;
   }
 
@@ -84,7 +92,7 @@ function EpisodeList({
       </Box>
       <Box>
         <List sx={{ mt: 3 }} aria-label="episode list">
-          {firstTenEpisodes.map((episode) => (
+          {currentEpisodes.map((episode) => (
             <EpisodeItem
               episode={episode}
               selectedEpisodePlaying={selectedEpisodePlaying}
@@ -103,6 +111,7 @@ function EpisodeList({
           open={modalOpen}
         />
       )}
+      <AppPagination setPage={setCurrentPage} pageCount={pageCount} />
     </Container>
   );
 }
