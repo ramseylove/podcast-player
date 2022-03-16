@@ -31,6 +31,10 @@ function EpisodeModal({
   open,
   onClose,
 }) {
+  const handlePlayingEpisode = (episode) => {
+    setSelectedEpisodePlaying(episode);
+    onClose();
+  };
   return (
     <Modal
       open={open}
@@ -49,7 +53,7 @@ function EpisodeModal({
           <Image src={image.url} alt={image.title} />
         </Box>
         <Box sx={{ mb: 4 }}>
-          <Button onClick={() => setSelectedEpisodePlaying(episode)}>
+          <Button onClick={() => handlePlayingEpisode(episode)}>
             <PlayCircleOutlineIcon fontSize="large" />
             <Typography component="span" role="presentation">
               Play Episode

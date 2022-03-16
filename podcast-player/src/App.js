@@ -32,6 +32,7 @@ function App() {
   const [shows, setShows] = useState([]);
   const [selectedShow, setSelectedShow] = useState({});
   const [selectedEpisodePlaying, setSelectedEpisodePlaying] = useState(null);
+  const [selectedEpisode, setSelectedEpisode] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -68,6 +69,7 @@ function App() {
         selectedEpisodePlaying={selectedEpisodePlaying}
         setSideBarOpen={setSideBarOpen}
         sideBarOpen={sideBarOpen}
+        setSelectedEpisode={setSelectedEpisode}
       />
 
       <ShowList
@@ -82,6 +84,8 @@ function App() {
           show={show}
           selectedEpisodePlaying={selectedEpisodePlaying}
           setSelectedEpisodePlaying={setSelectedEpisodePlaying}
+          setSelectedEpisode={setSelectedEpisode}
+          selectedEpisode={selectedEpisode}
         />
       )}
     </>

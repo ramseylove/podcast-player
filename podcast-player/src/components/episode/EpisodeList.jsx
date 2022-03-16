@@ -12,18 +12,19 @@ function EpisodeList({
   show,
   selectedEpisodePlaying,
   setSelectedEpisodePlaying,
+  selectedEpisode,
+  setSelectedEpisode,
 }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [episodes, setEpisodes] = useState(null);
   const [selectedShow, setSelectedShow] = useState({});
-  const [selectedEpisode, setSelectedEpisode] = useState();
-  const [firstTenEpisodes, setFirstTenEpisodes] = useState([]);
-  const [currentEpisodes, setCurrentEpisodes] = useState([]);
+  // const [firstTenEpisodes, setFirstTenEpisodes] = useState([]);
+  // const [currentEpisodes, setCurrentEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [episodesPerPage, setEpisodesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageCount, setPageCount] = useState(null);
+  const [pageCount, setPageCount] = useState(10);
 
   /**
    * Getting episodes
@@ -38,7 +39,7 @@ function EpisodeList({
           setSelectedShow({ ...data.channel });
           setEpisodes([...data.channel.episodes]);
           // setFirstTenEpisodes([...data.channel.episodes].slice(0, 9));
-          setPageCount(Math.ceil(episodes.length / episodesPerPage));
+          // setPageCount(Math.ceil(episodes.length / episodesPerPage));
           setIsLoading(false);
         })
         .catch((error) => {
@@ -53,9 +54,14 @@ function EpisodeList({
     };
   }, [show]);
 
-  //TODO: pagination logic
+  //TODO: handle total pages logic
+  const paginateEpisodes = (arr) => {
+    const f_idx = (currentPage - 1) * episodesPerPage;
+    const l_idx = currentPage * episodesPerPage - 1;
+    return arr.slice(f_idx, l_idx);
+  };
 
-  if (isLoading || !currentEpisodes) {
+  if (isLoading || !episodes || !pageCount) {
     return <Loader />;
   }
 
@@ -92,7 +98,7 @@ function EpisodeList({
       </Box>
       <Box>
         <List sx={{ mt: 3 }} aria-label="episode list">
-          {currentEpisodes.map((episode) => (
+          {paginateEpisodes(episodes).map((episode) => (
             <EpisodeItem
               episode={episode}
               selectedEpisodePlaying={selectedEpisodePlaying}
