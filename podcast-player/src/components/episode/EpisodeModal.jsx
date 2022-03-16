@@ -68,7 +68,7 @@ function EpisodeModal({
           {episode.pubDate}
         </Typography>
         <Typography
-          paragraph="true"
+          paragraph={true}
           variant="body1"
           aria-label={episode.description}
           id="dialogDescription"

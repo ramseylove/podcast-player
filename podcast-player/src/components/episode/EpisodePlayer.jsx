@@ -31,7 +31,7 @@ function EpisodePlayer({ episode, setSelectedEpisode }) {
         {episode.pubDate}
       </Box>
       <Typography
-        noWrap="true"
+        noWrap={true}
         sx={{ fontSize: ".7rem", mb: ".3rem", mr: "1rem" }}
       >
         {episode.description}

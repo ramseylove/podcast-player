@@ -15,7 +15,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 function ShowList({
   shows,
-  selectShow,
+  handleSelectedShow,
   selectedShow,
   sideBarOpen,
   setSideBarOpen,
@@ -45,7 +45,7 @@ function ShowList({
               id={show.id}
               title={show.title}
               feed={show.feed}
-              selectShow={selectShow}
+              handleSelectedShow={handleSelectedShow}
               selectedShow={selectedShow}
               setSideBarOpen={setSideBarOpen}
             />

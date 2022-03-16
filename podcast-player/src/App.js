@@ -30,7 +30,7 @@ const PODCASTS = [
 function App() {
   const [sideBarOpen, setSideBarOpen] = useState(true);
   const [shows, setShows] = useState([]);
-  const [selectedShow, setSelectedShow] = useState({});
+  const [selectedShow, setSelectedShow] = useState(null);
   const [selectedEpisodePlaying, setSelectedEpisodePlaying] = useState(null);
   const [selectedEpisode, setSelectedEpisode] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -59,10 +59,10 @@ function App() {
     return <Loader />;
   }
 
-  let show;
-  if (selectedShow) {
-    show = shows.find((show) => show.id === selectedShow);
-  }
+  const handleSelectedShow = (showId) => {
+    const show = shows.find((show) => show.id === showId);
+    setSelectedShow(show);
+  };
   return (
     <>
       <Header
@@ -75,13 +75,14 @@ function App() {
       <ShowList
         shows={shows}
         selectedShow={selectedShow}
-        selectShow={setSelectedShow}
+        handleSelectedShow={handleSelectedShow}
         sideBarOpen={sideBarOpen}
         setSideBarOpen={setSideBarOpen}
       />
-      {selectedShow && show && (
+      {selectedShow && (
         <EpisodeList
-          show={show}
+          show={selectedShow}
+          handleSelectedShow={handleSelectedShow}
           selectedEpisodePlaying={selectedEpisodePlaying}
           setSelectedEpisodePlaying={setSelectedEpisodePlaying}
           setSelectedEpisode={setSelectedEpisode}

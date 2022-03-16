@@ -1,9 +1,9 @@
 import ArrowRight from "@mui/icons-material/ArrowRight";
 import { ListItemButton } from "@mui/material";
 
-function Show({ id, title, selectShow, selectedShow, setSideBarOpen }) {
+function Show({ id, title, handleSelectedShow, selectedShow, setSideBarOpen }) {
   function selectShowHandler(id) {
-    selectShow(id);
+    handleSelectedShow(id);
     setSideBarOpen(false);
   }
   return (

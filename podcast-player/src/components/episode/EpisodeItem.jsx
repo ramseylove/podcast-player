@@ -18,9 +18,8 @@ function EpisodeItem({
 }) {
   return (
     <ListItemButton
-      role={"link"}
-      component={"li"}
-      key={episode.guid.text}
+      role="link"
+      component="li"
       onClick={() => showEpisodeModalHandler(episode)}
       sx={{ pl: 0 }}
       selected={
@@ -39,10 +38,12 @@ function EpisodeItem({
       </ListItemIcon>
 
       <Box sx={{ width: "80%" }}>
-        <Typography noWrap="true" variant="subtitle1" component="h1">
+        <Typography component="h1" sx={{ fontSize: "1rem", fontWeight: "600" }}>
           {episode.title}
         </Typography>
-        <Typography variant="subtitle2">{episode.pubDate}</Typography>
+        <Typography component="h2" sx={{ fontSize: ".8rem" }}>
+          {episode.pubDate}
+        </Typography>
       </Box>
     </ListItemButton>
   );

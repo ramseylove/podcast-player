@@ -16,8 +16,7 @@ function EpisodeList({
   setSelectedEpisode,
 }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [episodes, setEpisodes] = useState(null);
-  const [selectedShow, setSelectedShow] = useState({});
+  const [currentShow, setCurrentShow] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [episodesPerPage, setEpisodesPerPage] = useState(5);
@@ -34,8 +33,8 @@ function EpisodeList({
       setIsLoading(true);
       getEpisodes(show.feed)
         .then((data) => {
-          setSelectedShow({ ...data.channel });
-          setEpisodes([...data.channel.episodes]);
+          setCurrentShow(data.channel);
+          setCurrentPage(1);
           setIsLoading(false);
         })
         .catch((error) => {
@@ -50,13 +49,26 @@ function EpisodeList({
     };
   }, [show]);
 
+  /**
+   *  Pagination Logic
+   */
+  useEffect(() => {
+    const updatePageCount = () => {
+      const realPageCount = Math.ceil(
+        currentShow?.episodes.length / episodesPerPage
+      );
+      setPageCount(realPageCount);
+    };
+    updatePageCount();
+  }, [currentShow, episodesPerPage]);
+
   const paginateEpisodes = (arr) => {
-    const f_idx = (currentPage - 1) * episodesPerPage;
-    const l_idx = currentPage * episodesPerPage;
-    return arr.slice(f_idx, l_idx);
+    const firstId = (currentPage - 1) * episodesPerPage;
+    const lastId = currentPage * episodesPerPage;
+    return arr.slice(firstId, lastId);
   };
 
-  if (isLoading || !episodes || !pageCount) {
+  if (isLoading || !currentShow) {
     return <Loader />;
   }
 
@@ -88,13 +100,14 @@ function EpisodeList({
           {show.title}
         </Typography>
         <Typography gutterBottom variant="body2" component={"p"}>
-          {selectedShow.description}
+          {currentShow.description}
         </Typography>
       </Box>
       <Box>
         <List sx={{ mt: 3 }} aria-label="episode list">
-          {paginateEpisodes(episodes).map((episode) => (
+          {paginateEpisodes(currentShow.episodes).map((episode) => (
             <EpisodeItem
+              key={episode.guid.text}
               episode={episode}
               selectedEpisodePlaying={selectedEpisodePlaying}
               showEpisodeModalHandler={showEpisodeModalHandler}
@@ -106,14 +119,18 @@ function EpisodeList({
       {selectedEpisode && (
         <EpisodeModal
           episode={selectedEpisode}
-          image={selectedShow.image}
+          image={currentShow.image}
           setSelectedEpisodePlaying={setSelectedEpisodePlaying}
           onClose={closeEpisodeModalHandler}
           open={modalOpen}
         />
       )}
       <Box sx={{ mb: "2rem" }}>
-        <AppPagination setPage={setCurrentPage} pageCount={pageCount} />
+        <AppPagination
+          page={currentPage}
+          setPage={setCurrentPage}
+          pageCount={pageCount}
+        />
       </Box>
     </Container>
   );
