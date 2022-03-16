@@ -22,7 +22,7 @@ function EpisodeList({
   // const [currentEpisodes, setCurrentEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [episodesPerPage, setEpisodesPerPage] = useState(10);
+  const [episodesPerPage, setEpisodesPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(10);
 
@@ -57,7 +57,7 @@ function EpisodeList({
   //TODO: handle total pages logic
   const paginateEpisodes = (arr) => {
     const f_idx = (currentPage - 1) * episodesPerPage;
-    const l_idx = currentPage * episodesPerPage - 1;
+    const l_idx = currentPage * episodesPerPage;
     return arr.slice(f_idx, l_idx);
   };
 
@@ -88,7 +88,7 @@ function EpisodeList({
           gutterBottom
           variant="h4"
           component={"h1"}
-          sx={{ alignSelf: "center", pt: "1.3rem" }}
+          sx={{ alignSelf: { sm: "normal", xs: "center" }, pt: "1.3rem" }}
         >
           {show.title}
         </Typography>
