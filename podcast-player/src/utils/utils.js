@@ -14,3 +14,5 @@ export function parseDate(str) {
   };
   return new Date(str_date).toLocaleDateString("en-us", options);
 }
+
+export function paginate(pageNum, total) {}
