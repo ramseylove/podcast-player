@@ -45,7 +45,6 @@ export async function getEpisodes(url) {
       title: parsedXml.rss.channel.title,
     },
   };
-  console.log("Original:", parsedXml);
-  console.log("Cleaned:", cleanedXML);
+
   return cleanedXML;
 }
