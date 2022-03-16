@@ -1,6 +1,5 @@
 import React from "react";
-import Pagination from "@mui/material/Pagination";
-import { Container } from "@mui/material";
+import { Container, Pagination } from "@mui/material";
 
 const AppPagination = ({ setPage, pageCount }) => {
   const handleChange = (page) => {

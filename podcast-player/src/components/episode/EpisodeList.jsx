@@ -18,8 +18,6 @@ function EpisodeList({
   const [modalOpen, setModalOpen] = useState(false);
   const [episodes, setEpisodes] = useState(null);
   const [selectedShow, setSelectedShow] = useState({});
-  // const [firstTenEpisodes, setFirstTenEpisodes] = useState([]);
-  // const [currentEpisodes, setCurrentEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [episodesPerPage, setEpisodesPerPage] = useState(5);
@@ -38,8 +36,6 @@ function EpisodeList({
         .then((data) => {
           setSelectedShow({ ...data.channel });
           setEpisodes([...data.channel.episodes]);
-          // setFirstTenEpisodes([...data.channel.episodes].slice(0, 9));
-          // setPageCount(Math.ceil(episodes.length / episodesPerPage));
           setIsLoading(false);
         })
         .catch((error) => {
@@ -54,7 +50,6 @@ function EpisodeList({
     };
   }, [show]);
 
-  //TODO: handle total pages logic
   const paginateEpisodes = (arr) => {
     const f_idx = (currentPage - 1) * episodesPerPage;
     const l_idx = currentPage * episodesPerPage;
