@@ -22,6 +22,7 @@ function EpisodeItem({
       component={"li"}
       key={episode.guid.text}
       onClick={() => showEpisodeModalHandler(episode)}
+      sx={{ pl: 0 }}
       selected={
         episode &&
         selectedEpisodePlaying &&
@@ -30,11 +31,10 @@ function EpisodeItem({
     >
       <ListItemIcon role={"play"}>
         <IconButton
-          size="large"
           color="secondary"
           onClick={() => playEpisodeHandler(episode)}
         >
-          <PlayCircleOutlineIcon fontSize="inherit" />
+          <PlayCircleOutlineIcon sx={{ fontSize: 34 }} />
         </IconButton>
       </ListItemIcon>
 

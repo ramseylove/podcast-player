@@ -117,7 +117,9 @@ function EpisodeList({
           open={modalOpen}
         />
       )}
-      <AppPagination setPage={setCurrentPage} pageCount={pageCount} />
+      <Box sx={{ mb: "2rem" }}>
+        <AppPagination setPage={setCurrentPage} pageCount={pageCount} />
+      </Box>
     </Container>
   );
 }
