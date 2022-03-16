@@ -7,7 +7,7 @@ const AppPagination = ({ setPage, pageCount }) => {
     setPage(page);
   };
   return (
-    <Container>
+    <Container sx={{ p: 0 }}>
       <Pagination
         onChange={(e) => handleChange(e.target.textContent)}
         count={pageCount}
