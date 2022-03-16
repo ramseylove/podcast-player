@@ -4,6 +4,8 @@ import { getEpisodes } from "../../utils/api-utils";
 import { Box, Container, List, Typography } from "@mui/material";
 import EpisodeModal from "./EpisodeModal";
 import EpisodeItem from "./EpisodeItem";
+import Loader from "../ui/loader";
+import ErrorAlert from "../ui/errorAlert";
 
 function EpisodeList({
   show,
@@ -16,6 +18,7 @@ function EpisodeList({
   const [selectedEpisode, setSelectedEpisode] = useState();
   const [firstTenEpisodes, setFirstTenEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   /**
    * Getting episodes
@@ -33,7 +36,10 @@ function EpisodeList({
           setFirstTenEpisodes([...data.channel.episodes].slice(0, 9));
           setIsLoading(false);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          setError(error.msg);
+          setIsLoading(false);
+        });
     }
     // cleanup
     return () => {
@@ -42,12 +48,14 @@ function EpisodeList({
   }, [show]);
 
   if (isLoading) {
-    return <div>Loading Episodes...</div>;
+    return <Loader />;
   }
+
   function playEpisodeHandler(episode) {
     setSelectedEpisodePlaying(episode);
   }
-  function showEpisodeHandler() {
+
+  function closeEpisodeModalHandler() {
     if (selectedEpisode) {
       setSelectedEpisode(null);
     }
@@ -60,8 +68,14 @@ function EpisodeList({
 
   return (
     <Container maxWidth="md">
-      <Box>
-        <Typography gutterBottom variant="h3" component={"h1"}>
+      {error && <ErrorAlert error={error} />}
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Typography
+          gutterBottom
+          variant="h4"
+          component={"h1"}
+          sx={{ alignSelf: "center", pt: "1.3rem" }}
+        >
           {show.title}
         </Typography>
         <Typography gutterBottom variant="body2" component={"p"}>
@@ -85,7 +99,7 @@ function EpisodeList({
           episode={selectedEpisode}
           image={selectedShow.image}
           setSelectedEpisodePlaying={setSelectedEpisodePlaying}
-          onClose={showEpisodeHandler}
+          onClose={closeEpisodeModalHandler}
           open={modalOpen}
         />
       )}

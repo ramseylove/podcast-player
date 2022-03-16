@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ShowList from "./components/show/ShowList";
 import EpisodeList from "./components/episode/EpisodeList";
-import Header from "./components/header";
+import Header from "./components/ui/header";
 
 const PODCASTS = [
   {
@@ -32,6 +32,7 @@ function App() {
   const [selectedShow, setSelectedShow] = useState({});
   const [selectedEpisodePlaying, setSelectedEpisodePlaying] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     if (!PODCASTS) {
       async function getShows() {
@@ -56,11 +57,6 @@ function App() {
     return <div>Loading Shows</div>;
   }
 
-  function handleSelectShow(id) {
-    if (shows && !isLoading) {
-      return shows[id];
-    }
-  }
   let show;
   if (selectedShow) {
     show = shows.find((show) => show.id === selectedShow);
@@ -72,22 +68,21 @@ function App() {
         setSideBarOpen={setSideBarOpen}
         sideBarOpen={sideBarOpen}
       />
-      <div className="App">
-        <ShowList
-          shows={shows}
-          selectedShow={selectedShow}
-          selectShow={setSelectedShow}
-          sideBarOpen={sideBarOpen}
-          setSideBarOpen={setSideBarOpen}
+
+      <ShowList
+        shows={shows}
+        selectedShow={selectedShow}
+        selectShow={setSelectedShow}
+        sideBarOpen={sideBarOpen}
+        setSideBarOpen={setSideBarOpen}
+      />
+      {selectedShow && show && (
+        <EpisodeList
+          show={show}
+          selectedEpisodePlaying={selectedEpisodePlaying}
+          setSelectedEpisodePlaying={setSelectedEpisodePlaying}
         />
-        {selectedShow && show && (
-          <EpisodeList
-            show={show}
-            selectedEpisodePlaying={selectedEpisodePlaying}
-            setSelectedEpisodePlaying={setSelectedEpisodePlaying}
-          />
-        )}
-      </div>
+      )}
     </>
   );
 }

@@ -1,48 +1,52 @@
 import React from "react";
-import EpisodePlayer from "./episode/EpisodePlayer";
-
 import MenuIcon from "@mui/icons-material/Menu";
-import IconButton from "@mui/material/IconButton";
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
+
+import EpisodePlayer from "../episode/EpisodePlayer";
 
 function Header({ selectedEpisodePlaying, setSideBarOpen, sideBarOpen }) {
   const toggleDrawer = (sideBarOpen) => (event) => {
     setSideBarOpen(sideBarOpen);
   };
   return (
-    <AppBar
-      position="sticky"
-      sx={{
-        flexGrow: 1,
-        bgcolor: "primary.main",
-      }}
-    >
-      <Box
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="sticky"
         sx={{
+          flexGrow: 1,
+          height: {
+            xs: "auto",
+            sm: "8rem",
+          },
+          bgcolor: "primary.main",
           display: "flex",
-          flexDirection: "row",
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+          },
           justifyContent: "space-between",
-          height: "8rem",
         }}
       >
         <Toolbar>
           <IconButton
             size="large"
             color="inherit"
-            aria-label="open sidebar"
+            aria-label="open navigation"
             onClick={toggleDrawer(true)}
             edge="start"
-            sx={{ mr: 2, ml: 2 }}
+            sx={{ mr: 2, ml: 1 }}
           >
             <MenuIcon />
           </IconButton>
-          <h1>Ultimate Podcasting</h1>
+          <Typography variant="h5" component="h1">
+            Ultimate Podcasting
+          </Typography>
         </Toolbar>
         {selectedEpisodePlaying && (
           <EpisodePlayer episode={selectedEpisodePlaying} />
         )}
-      </Box>
-    </AppBar>
+      </AppBar>
+    </Box>
   );
 }
 

@@ -34,12 +34,8 @@ function ShowList({
           <Typography variant="h5" component="h1">
             Podcasts
           </Typography>
-          <IconButton
-            size="large"
-            color="secondary"
-            onClick={() => setSideBarOpen(false)}
-          >
-            <ArrowLeft fontSize="inherit" />
+          <IconButton size="large" onClick={() => setSideBarOpen(false)}>
+            <ArrowLeft fontSize="inherit" sx={{ color: "primary.dark" }} />
           </IconButton>
         </DrawerHeader>
         <List>
