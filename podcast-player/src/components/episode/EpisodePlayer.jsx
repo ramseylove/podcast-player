@@ -8,7 +8,7 @@ const PodcastPlayer = styled("audio")(({ theme }) => ({
   height: "2.0rem",
 }));
 
-function EpisodePlayer({ episode }) {
+function EpisodePlayer({ episode, setSelectedEpisode }) {
   return (
     <Card
       sx={{
@@ -38,10 +38,12 @@ function EpisodePlayer({ episode }) {
       </Typography>
       <Box sx={{ fontSize: ".6rem" }}>
         <Link
+          onClick={() => setSelectedEpisode(episode)}
           sx={{
             fontWeight: "700",
             color: "primary.contrastText",
             textDecoration: "underline solid white",
+            cursor: "pointer",
           }}
         >
           Read More

@@ -4,7 +4,12 @@ import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 
 import EpisodePlayer from "../episode/EpisodePlayer";
 
-function Header({ selectedEpisodePlaying, setSideBarOpen, sideBarOpen }) {
+function Header({
+  selectedEpisodePlaying,
+  setSideBarOpen,
+  sideBarOpen,
+  setSelectedEpisode,
+}) {
   const toggleDrawer = (sideBarOpen) => (event) => {
     setSideBarOpen(sideBarOpen);
   };
@@ -43,7 +48,10 @@ function Header({ selectedEpisodePlaying, setSideBarOpen, sideBarOpen }) {
           </Typography>
         </Toolbar>
         {selectedEpisodePlaying && (
-          <EpisodePlayer episode={selectedEpisodePlaying} />
+          <EpisodePlayer
+            episode={selectedEpisodePlaying}
+            setSelectedEpisode={setSelectedEpisode}
+          />
         )}
       </AppBar>
     </Box>
