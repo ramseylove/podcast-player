@@ -1,5 +1,6 @@
 import ArrowRight from "@mui/icons-material/ArrowRight";
 import { ListItemButton } from "@mui/material";
+
 function Show({ id, title, selectShow, selectedShow, setSideBarOpen }) {
   function selectShowHandler(id) {
     selectShow(id);
@@ -11,9 +12,10 @@ function Show({ id, title, selectShow, selectedShow, setSideBarOpen }) {
       component={"li"}
       onClick={() => selectShowHandler(id)}
       selected={selectedShow === id}
+      sx={{ pl: ".2rem", pr: "2rem" }}
     >
-      {title}
       <ArrowRight fontSize="large" />
+      {title}
     </ListItemButton>
   );
 }

@@ -34,14 +34,13 @@ function Header({
       >
         <Toolbar>
           <IconButton
-            size="large"
             color="inherit"
             aria-label="open navigation"
             onClick={toggleDrawer(true)}
             edge="start"
             sx={{ mr: 2, ml: 1 }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ fontSize: 40 }} />
           </IconButton>
           <Typography variant="h5" component="h1">
             Ultimate Podcasting

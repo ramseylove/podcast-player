@@ -2,7 +2,7 @@ import { IconButton, List, Drawer, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React from "react";
 import Show from "./Show";
-import ArrowLeft from "@mui/icons-material/ArrowLeft";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -35,7 +35,7 @@ function ShowList({
             Podcasts
           </Typography>
           <IconButton size="large" onClick={() => setSideBarOpen(false)}>
-            <ArrowLeft fontSize="inherit" sx={{ color: "primary.dark" }} />
+            <ClearIcon fontSize="inherit" sx={{ color: "primary.dark" }} />
           </IconButton>
         </DrawerHeader>
         <List>
