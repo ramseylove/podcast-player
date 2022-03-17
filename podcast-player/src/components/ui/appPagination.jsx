@@ -8,7 +8,7 @@ const AppPagination = ({ page, setPage, pageCount }) => {
     <Container sx={{ p: 0 }}>
       <Pagination
         onChange={handlePageChange}
-        count={pageCount}
+        count={pageCount()}
         page={page}
         variant="outlined"
         sx={{ display: "flex", justifyContent: "center" }}

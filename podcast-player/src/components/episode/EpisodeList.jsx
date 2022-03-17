@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { getEpisodes } from "../../utils/api-utils";
 import { Box, Container, List, Typography } from "@mui/material";
@@ -21,7 +21,6 @@ function EpisodeList({
   const [error, setError] = useState(null);
   const [episodesPerPage, setEpisodesPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageCount, setPageCount] = useState(10);
 
   /**
    * Getting episodes
@@ -52,14 +51,8 @@ function EpisodeList({
   /**
    *  Pagination Logic
    */
-  useEffect(() => {
-    const updatePageCount = () => {
-      const realPageCount = Math.ceil(
-        currentShow?.episodes.length / episodesPerPage
-      );
-      setPageCount(realPageCount);
-    };
-    updatePageCount();
+  const updatePageCount = useCallback(() => {
+    return Math.ceil(currentShow.episodes.length / episodesPerPage);
   }, [currentShow, episodesPerPage]);
 
   const paginateEpisodes = (arr) => {
@@ -129,7 +122,7 @@ function EpisodeList({
         <AppPagination
           page={currentPage}
           setPage={setCurrentPage}
-          pageCount={pageCount}
+          pageCount={updatePageCount}
         />
       </Box>
     </Container>
