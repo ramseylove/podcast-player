@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Pagination } from "@mui/material";
 
 const AppPagination = ({ page, setPage, pageCount }) => {

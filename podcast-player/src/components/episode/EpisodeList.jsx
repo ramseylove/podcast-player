@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { getEpisodes } from "../../utils/api-utils";
 import { Box, Container, List, Typography } from "@mui/material";

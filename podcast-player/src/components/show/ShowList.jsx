@@ -1,4 +1,3 @@
-import React from "react";
 import { IconButton, List, Drawer, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Show from "./Show";

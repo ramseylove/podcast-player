@@ -1,5 +1,4 @@
 import { Alert, AlertTitle, Box, Button } from "@mui/material";
-import React from "react";
 
 function ErrorAlert({ message = "Sorry there was an error" }) {
   return (
