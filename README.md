@@ -6,6 +6,9 @@
 - Using a fork of [`fast-xml-parser`](https://github.com/NaturalIntelligence/fast-xml-parser) called ['arraybuffer-xml-parser](https://github.com/cheminfo/arraybuffer-xml-parser) to parse XML encoded data which podcast RSS feeds use.
 - Episodes play using the built in audio element
 
+## Live Demo
+[https://ultimate-podcasting.vercel.app](https://ultimate-podcasting.vercel.app)
+
 ## Future features and Development Plans
 
 - Use Declarative routing with react-router-dom or migrate to NextJs file based routing
