@@ -7,16 +7,17 @@
 - Episodes play using the built in audio element
 
 ## Live Demo
+
 [https://ultimate-podcasting.vercel.app](https://ultimate-podcasting.vercel.app)
 
 ## Future features and Development Plans
 
-- Use Declarative routing with react-router-dom or migrate to NextJs file based routing
 - Integrate with [listennotes.com](https://www.listennotes.com/api/)
+  - ability to search podcasts
+  - add to favorite show list
+  - store listening progress per episode
 - Build a persistent audio player. Continue to display the audio element and play sound even when the user navigates away from the episode, [like SoundCloud](https://soundcloud.com/search?q=rick%20astley)
-- Save play progress
-- Include automated tests
-- Package with Electron
+- Include tests
 
 ```js
 const PODCASTS = [
