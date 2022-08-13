@@ -20,8 +20,6 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start-api": "json-server -p 3500 -w data/db.json",
-    "old-dev": "npm-run-all --parallel start start-api",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
