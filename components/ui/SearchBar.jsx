@@ -1,5 +1,4 @@
 import { Box, TextField } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 const SearchBar = () => {
   return (
     <Box
