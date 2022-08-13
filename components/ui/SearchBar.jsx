@@ -4,12 +4,23 @@ const SearchBar = () => {
   const theme = useTheme();
   return (
     <Box
+      component="form"
       sx={{
         alignSelf: "end",
         marginBottom: "1rem",
+        flexBasis: "20rem",
+        backgroundColor: "primary.main",
+        color: "primary.contrastText",
       }}
+      autoComplete="off"
     >
-      <TextField id="search" label="Search" type="search" variant="standard" />
+      <TextField
+        id="search"
+        label="Search"
+        type="search"
+        variant="filled"
+        fullWidth="true"
+      />
     </Box>
   );
 };

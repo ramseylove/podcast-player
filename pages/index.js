@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+
+// Components
 import ShowList from "../components/show/ShowList";
 import EpisodeList from "../components/episode/EpisodeList";
 import Header from "../components/ui/header";

@@ -19,8 +19,10 @@ export function EpisodeWrapper({ children }) {
         flexDirection: "column",
         justifyContent: "space-between",
         backgroundColor: "#88737a",
+        backgroundColor: "primary.main",
         color: "primary.contrastText",
         flexBasis: "30rem",
+        boxShadow: 0,
       }}
     >
       {children}
