@@ -46,7 +46,7 @@ function Header({
             Ultimate Podcasting
           </Typography>
         </Toolbar>
-        <SearchBar />
+        {/* <SearchBar /> */}
         <EpisodeWrapper>
           {selectedEpisodePlaying && (
             <EpisodePlayer
