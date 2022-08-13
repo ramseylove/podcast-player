@@ -2,7 +2,6 @@ import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import Image from "next/image";
 
 const style = {
   position: "absolute",

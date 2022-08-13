@@ -18,7 +18,6 @@ export function EpisodeWrapper({ children }) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundColor: "#88737a",
         backgroundColor: "primary.main",
         color: "primary.contrastText",
         flexBasis: "30rem",
