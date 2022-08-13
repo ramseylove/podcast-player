@@ -1,7 +1,8 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 
-import EpisodePlayer from "../episode/EpisodePlayer";
+import { EpisodePlayer, EpisodeWrapper } from "../episode/EpisodePlayer";
+import SearchBar from "./SearchBar";
 
 function Header({
   selectedEpisodePlaying,
@@ -45,12 +46,15 @@ function Header({
             Ultimate Podcasting
           </Typography>
         </Toolbar>
-        {selectedEpisodePlaying && (
-          <EpisodePlayer
-            episode={selectedEpisodePlaying}
-            setSelectedEpisode={setSelectedEpisode}
-          />
-        )}
+        <SearchBar />
+        <EpisodeWrapper>
+          {selectedEpisodePlaying && (
+            <EpisodePlayer
+              episode={selectedEpisodePlaying}
+              setSelectedEpisode={setSelectedEpisode}
+            />
+          )}
+        </EpisodeWrapper>
       </AppBar>
     </Box>
   );

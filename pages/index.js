@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import ShowList from "./components/show/ShowList";
-import EpisodeList from "./components/episode/EpisodeList";
-import Header from "./components/ui/header";
-import Loader from "./components/ui/loader";
+import ShowList from "../components/show/ShowList";
+import EpisodeList from "../components/episode/EpisodeList";
+import Header from "../components/ui/header";
+import Loader from "../components/ui/loader";
 
 const PODCASTS = [
   {

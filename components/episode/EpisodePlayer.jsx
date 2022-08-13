@@ -6,7 +6,7 @@ const PodcastPlayer = styled("audio")(({ theme }) => ({
   height: "2.0rem",
 }));
 
-function EpisodePlayer({ episode, setSelectedEpisode }) {
+export function EpisodeWrapper({ children }) {
   return (
     <Card
       sx={{
@@ -20,8 +20,17 @@ function EpisodePlayer({ episode, setSelectedEpisode }) {
         justifyContent: "space-between",
         backgroundColor: "#88737a",
         color: "primary.contrastText",
+        flexBasis: "30rem",
       }}
     >
+      {children}
+    </Card>
+  );
+}
+
+export function EpisodePlayer({ episode, setSelectedEpisode }) {
+  return (
+    <>
       <Box sx={{ fontSize: ".9rem", fontWeight: "600", mb: ".4rem" }}>
         {episode.title}
       </Box>
@@ -55,8 +64,6 @@ function EpisodePlayer({ episode, setSelectedEpisode }) {
           autoPlay
         ></PodcastPlayer>
       </CardMedia>
-    </Card>
+    </>
   );
 }
-
-export default EpisodePlayer;

@@ -2,7 +2,7 @@ import { Box, Button, Container, Modal, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import Image from "@jy95/material-ui-image";
+import Image from "next/image";
 
 const style = {
   position: "absolute",
@@ -46,7 +46,7 @@ function EpisodeModal({
         </Box>
 
         <Box sx={{ width: { xs: "8rem", sm: "15rem" }, boxShadow: 6, mb: 2 }}>
-          <Image src={image.url} alt={image.title} />
+          <img src={image.url} alt={image.title} width="100%" />
         </Box>
         <Box sx={{ mb: 4 }}>
           <Button onClick={() => handlePlayingEpisode(episode)}>
