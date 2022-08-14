@@ -26,7 +26,13 @@ function ShowList({
         open={sideBarOpen}
         anchor={"left"}
         ModalProps={{ keepMounted: true }}
-        sx={{ width: 28, flexShrink: 0, bgcolor: "primary.light" }}
+        PaperProps={{
+          sx: {
+            backgroundColor: "background.default",
+            backgroundImage: "none",
+          },
+        }}
+        sx={{ width: 28, flexShrink: 0 }}
         aria-label={"Navigation drawer"}
       >
         <DrawerHeader>
@@ -34,7 +40,7 @@ function ShowList({
             Podcasts
           </Typography>
           <IconButton size="large" onClick={() => setSideBarOpen(false)}>
-            <ClearIcon fontSize="inherit" sx={{ color: "primary.dark" }} />
+            <ClearIcon fontSize="inherit" />
           </IconButton>
         </DrawerHeader>
         <List>

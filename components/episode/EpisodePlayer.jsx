@@ -1,4 +1,4 @@
-import { Box, Card, CardMedia, Link, Typography } from "@mui/material";
+import { Box, Card, CardMedia, Link, Paper, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const PodcastPlayer = styled("audio")(({ theme }) => ({
@@ -14,12 +14,11 @@ export function EpisodeWrapper({ children }) {
         width: {
           sm: "40rem",
         },
+        backgroundColor: "primary.main",
         alignSelf: "stretch",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundColor: "primary.main",
-        color: "primary.contrastText",
         flexBasis: "30rem",
         boxShadow: 0,
       }}
@@ -32,12 +31,15 @@ export function EpisodeWrapper({ children }) {
 export function EpisodePlayer({ episode, setSelectedEpisode }) {
   return (
     <>
-      <Box sx={{ fontSize: ".9rem", fontWeight: "600", mb: ".4rem" }}>
+      <Typography
+        noWrap={true}
+        sx={{ fontSize: ".9rem", fontWeight: "600", mb: ".4rem" }}
+      >
         {episode.title}
-      </Box>
-      <Box sx={{ fontSize: ".7rem", fontWeight: "700", mb: ".4rem" }}>
+      </Typography>
+      <Typography sx={{ fontSize: ".7rem", fontWeight: "700", mb: ".4rem" }}>
         {episode.pubDate}
-      </Box>
+      </Typography>
       <Typography
         noWrap={true}
         sx={{ fontSize: ".7rem", mb: ".3rem", mr: "1rem" }}
@@ -47,10 +49,10 @@ export function EpisodePlayer({ episode, setSelectedEpisode }) {
       <Box sx={{ fontSize: ".6rem" }}>
         <Link
           onClick={() => setSelectedEpisode(episode)}
+          color="primary.contrastText"
           sx={{
             fontWeight: "700",
-            color: "primary.contrastText",
-            textDecoration: "underline solid white",
+            textDecoration: "underline solid",
             cursor: "pointer",
           }}
         >
