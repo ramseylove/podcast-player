@@ -1,3 +1,4 @@
+import Axios from "axios";
 import { removeHtml, parseDate } from "./utils";
 import { parse } from "arraybuffer-xml-parser";
 export async function getShows() {
@@ -48,3 +49,26 @@ export async function getEpisodes(url) {
 
   return cleanedXML;
 }
+
+//create axios instance
+// const ENV = "development";
+const baseURL =
+  process.env.ENVIRONMENT === "development"
+    ? "https://listen-api-test.listennotes.com/api/v2"
+    : "https://listen-api.listennotes.com/api/v2";
+const apiKey =
+  process.env.ENVIRONMENT === "development"
+    ? ""
+    : process.env.LISTEN_NOTES_API_KEY;
+
+const API = Axios.create({
+  baseURL,
+  timeout: 3000,
+  headers: {
+    "X-ListenAPI-Key": apiKey,
+  },
+});
+
+export const searchPodcasts = async (search = "") => {
+  const data = API.get(`/search?q=${search}`);
+};

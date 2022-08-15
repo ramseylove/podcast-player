@@ -5,6 +5,7 @@ import ShowList from "../components/show/ShowList";
 import EpisodeList from "../components/episode/EpisodeList";
 import Header from "../components/ui/header";
 import Loader from "../components/ui/loader";
+import { useFetchPodcasts } from "../hooks/useFetchPodcasts";
 
 const PODCASTS = [
   {
@@ -35,27 +36,30 @@ function App() {
   const [selectedShow, setSelectedShow] = useState(null);
   const [selectedEpisodePlaying, setSelectedEpisodePlaying] = useState(null);
   const [selectedEpisode, setSelectedEpisode] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    if (!PODCASTS) {
-      async function getShows() {
-        const url = "http://localhost:3500/podcasts";
-        const res = await fetch(url);
+  const { data, isLoading, isFetching, erro } = useFetchPodcasts(query);
 
-        const data = await res.json();
+  // useEffect(() => {
+  //   if (!PODCASTS) {
+  //     async function getShows() {
+  //       const url = "http://localhost:3500/podcasts";
+  //       const res = await fetch(url);
 
-        if (data) {
-          setShows(data);
-          setIsLoading(false);
-        }
-      }
+  //       const data = await res.json();
 
-      getShows();
-    }
-    setShows(PODCASTS);
-    setIsLoading(false);
-  }, []);
+  //       if (data) {
+  //         setShows(data);
+  //         setIsLoading(false);
+  //       }
+  //     }
+
+  //     getShows();
+  //   }
+  //   setShows(PODCASTS);
+  //   setIsLoading(false);
+  // }, []);
 
   if (isLoading) {
     return <Loader />;

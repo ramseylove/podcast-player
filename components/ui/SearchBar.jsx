@@ -1,5 +1,20 @@
+import React from "react";
 import { Box, TextField } from "@mui/material";
-const SearchBar = () => {
+import { useState } from "react";
+const SearchBar = ({ setQuery }) => {
+  const [text, setText] = useState("");
+  const timer = React.useRef();
+
+  const handleInput = (e) => {
+    const value = e.currentTarget.value;
+
+    clearTimeout(timer.current);
+
+    setText(value);
+    timer.current = setTimeout(() => {
+      setQuery(value);
+    }, 250);
+  };
   return (
     <Box
       component="form"
@@ -18,6 +33,8 @@ const SearchBar = () => {
         type="search"
         variant="filled"
         fullWidth="true"
+        value={text}
+        onChange={handleInput}
       />
     </Box>
   );
