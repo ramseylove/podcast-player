@@ -1,5 +1,5 @@
 const nextConfig = {
-  reactStaticMode: true,
+  ReactStrictMode: true,
   swcMinify: true,
 };
 // had issues with esm  export
