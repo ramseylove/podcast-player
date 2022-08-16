@@ -52,23 +52,36 @@ export async function getEpisodes(url) {
 
 //create axios instance
 // const ENV = "development";
-const baseURL =
+// const baseURL =
+//   process.env.ENVIRONMENT === "development"
+//     ? "https://listen-api-test.listennotes.com/api/v2"
+//     : "https://listen-api.listennotes.com/api/v2";
+// const apiKey =
+//   process.env.ENVIRONMENT === "development"
+//     ? ""
+//     : process.env.LISTEN_NOTES_API_KEY;
+const apiHeader =
   process.env.ENVIRONMENT === "development"
-    ? "https://listen-api-test.listennotes.com/api/v2"
-    : "https://listen-api.listennotes.com/api/v2";
-const apiKey =
-  process.env.ENVIRONMENT === "development"
-    ? ""
-    : process.env.LISTEN_NOTES_API_KEY;
+    ? `"X-listenAPI-Key": ${process.env.LISTEN_NOTES_API_KEY}`
+    : "";
+
+const BASE_API_URL =
+  "https://listen-api-test.listennotes.com/api/v2" || process.env.BASE_API_URL;
 
 const API = Axios.create({
-  baseURL,
+  baseURL: BASE_API_URL,
   timeout: 3000,
   headers: {
-    "X-ListenAPI-Key": apiKey,
+    apiHeader,
   },
 });
 
 export const searchPodcasts = async (search = "") => {
-  const data = API.get(`/search?q=${search}`);
+  try {
+    const response = await API.get(`/search?q=${search}`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };

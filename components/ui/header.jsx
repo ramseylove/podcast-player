@@ -47,8 +47,7 @@ function Header({
             Ultimate Podcasting
           </Typography>
         </Toolbar>
-
-        <SearchBar setQuery={setQuery} />
+        {setQuery ? <SearchBar setQuery={setQuery} /> : null}
 
         <EpisodeWrapper>
           {selectedEpisodePlaying && (

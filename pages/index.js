@@ -6,6 +6,7 @@ import EpisodeList from "../components/episode/EpisodeList";
 import Header from "../components/ui/header";
 import Loader from "../components/ui/loader";
 import { useFetchPodcasts } from "../hooks/useFetchPodcasts";
+import SearchResults from "../components/searchResults/SearchResults";
 
 const PODCASTS = [
   {
@@ -61,9 +62,9 @@ function App() {
   //   setIsLoading(false);
   // }, []);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading || isFetching) {
+  //   return <Loader />;
+  // }
 
   const handleSelectedShow = (showId) => {
     const show = shows.find((show) => show.id === showId);
@@ -86,7 +87,8 @@ function App() {
         sideBarOpen={sideBarOpen}
         setSideBarOpen={setSideBarOpen}
       />
-
+      {data && data.results ? <SearchResults results={data.results} /> : null}
+      {isLoading || isFetching ? <Loader /> : null}
       {/* {selectedShow && (
         <EpisodeList
           show={selectedShow}
