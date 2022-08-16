@@ -1,13 +1,14 @@
 import React from "react";
 import { Box, TextField } from "@mui/material";
 import { useState } from "react";
+
 const SearchBar = ({ setQuery }) => {
   const [text, setText] = useState("");
   const timer = React.useRef();
 
   const handleInput = (e) => {
     const value = e.currentTarget.value;
-
+    console.log(value);
     clearTimeout(timer.current);
 
     setText(value);

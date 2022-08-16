@@ -39,7 +39,7 @@ function App() {
   // const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
 
-  const { data, isLoading, isFetching, erro } = useFetchPodcasts(query);
+  const { data, isLoading, isFetching, error } = useFetchPodcasts(query);
 
   // useEffect(() => {
   //   if (!PODCASTS) {
@@ -76,6 +76,7 @@ function App() {
         setSideBarOpen={setSideBarOpen}
         sideBarOpen={sideBarOpen}
         setSelectedEpisode={setSelectedEpisode}
+        setQuery={setQuery}
       />
 
       <ShowList
@@ -85,7 +86,8 @@ function App() {
         sideBarOpen={sideBarOpen}
         setSideBarOpen={setSideBarOpen}
       />
-      {selectedShow && (
+
+      {/* {selectedShow && (
         <EpisodeList
           show={selectedShow}
           handleSelectedShow={handleSelectedShow}
@@ -94,7 +96,7 @@ function App() {
           setSelectedEpisode={setSelectedEpisode}
           selectedEpisode={selectedEpisode}
         />
-      )}
+      )} */}
     </>
   );
 }

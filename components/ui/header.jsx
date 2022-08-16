@@ -9,6 +9,7 @@ function Header({
   setSideBarOpen,
   sideBarOpen,
   setSelectedEpisode,
+  setQuery,
 }) {
   const toggleDrawer = (sideBarOpen) => (event) => {
     setSideBarOpen(sideBarOpen);
@@ -46,7 +47,9 @@ function Header({
             Ultimate Podcasting
           </Typography>
         </Toolbar>
-        {/* <SearchBar /> */}
+
+        <SearchBar setQuery={setQuery} />
+
         <EpisodeWrapper>
           {selectedEpisodePlaying && (
             <EpisodePlayer
