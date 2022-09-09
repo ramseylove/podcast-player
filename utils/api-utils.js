@@ -50,29 +50,26 @@ export async function getEpisodes(url) {
   return cleanedXML;
 }
 
-//create axios instance
-// const ENV = "development";
-// const baseURL =
-//   process.env.ENVIRONMENT === "development"
-//     ? "https://listen-api-test.listennotes.com/api/v2"
-//     : "https://listen-api.listennotes.com/api/v2";
-// const apiKey =
-//   process.env.ENVIRONMENT === "development"
-//     ? ""
-//     : process.env.LISTEN_NOTES_API_KEY;
-const apiHeader =
-  process.env.ENVIRONMENT === "development"
-    ? `"X-listenAPI-Key": ${process.env.LISTEN_NOTES_API_KEY}`
-    : "";
+let apiHeaders;
+let BASE_API_URL;
+const apiProxy = "http://0.0.0.0:9999/";
 
-const BASE_API_URL =
-  "https://listen-api-test.listennotes.com/api/v2" || process.env.BASE_API_URL;
+if (process.env.NEXT_PUBLIC_ENVIRONMENT === "development") {
+  apiHeaders = {
+    "X-Requested-With": "localhost",
+  };
+  BASE_API_URL = apiProxy + "https://listen-api-test.listennotes.com/api/v2";
+}
+
+if (process.env.NEXT_PUBLIC_ENVIRONMENT === "production") {
+  apiHeaders = `"X-listenAPI-Key": ${process.env.LISTEN_NOTES_API_KEY}`;
+}
 
 const API = Axios.create({
   baseURL: BASE_API_URL,
   timeout: 3000,
   headers: {
-    apiHeader,
+    apiHeaders,
   },
 });
 

@@ -8,29 +8,6 @@ import Loader from "../components/ui/loader";
 import { useFetchPodcasts } from "../hooks/useFetchPodcasts";
 import SearchResults from "../components/searchResults/SearchResults";
 
-const PODCASTS = [
-  {
-    id: "the-daily",
-    title: "The Daily",
-    feed: "https://feeds.simplecast.com/54nAGcIl",
-  },
-  {
-    id: "crime-junkie",
-    title: "Crime Junkie",
-    feed: "https://feeds.simplecast.com/qm_9xx0g",
-  },
-  {
-    id: "apology-line",
-    title: "The Apology Line",
-    feed: "https://rss.art19.com/apology-line",
-  },
-  {
-    id: "working-it-out",
-    title: "Mike Birbiglia's Working It Out",
-    feed: "https://workingitout.libsyn.com/rss",
-  },
-];
-
 function App() {
   const [sideBarOpen, setSideBarOpen] = useState(true);
   const [shows, setShows] = useState([]);
@@ -42,30 +19,7 @@ function App() {
 
   const { data, isLoading, isFetching, error } = useFetchPodcasts(query);
 
-  // useEffect(() => {
-  //   if (!PODCASTS) {
-  //     async function getShows() {
-  //       const url = "http://localhost:3500/podcasts";
-  //       const res = await fetch(url);
-
-  //       const data = await res.json();
-
-  //       if (data) {
-  //         setShows(data);
-  //         setIsLoading(false);
-  //       }
-  //     }
-
-  //     getShows();
-  //   }
-  //   setShows(PODCASTS);
-  //   setIsLoading(false);
-  // }, []);
-
-  // if (isLoading || isFetching) {
-  //   return <Loader />;
-  // }
-
+  console.log(data);
   const handleSelectedShow = (showId) => {
     const show = shows.find((show) => show.id === showId);
     setSelectedShow(show);
