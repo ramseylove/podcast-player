@@ -5,8 +5,12 @@ import ShowList from "../components/show/ShowList";
 import EpisodeList from "../components/episode/EpisodeList";
 import Header from "../components/ui/header";
 import Loader from "../components/ui/loader";
-import { useFetchPodcasts } from "../hooks/useFetchPodcasts";
+import {
+  useFetchPodcasts,
+  useFetchTopPodcasts,
+} from "../hooks/useFetchPodcasts";
 import SearchResults from "../components/searchResults/SearchResults";
+import PodcastList from "../components/podcastList/PodcastList";
 
 function App() {
   const [sideBarOpen, setSideBarOpen] = useState(true);
@@ -17,9 +21,9 @@ function App() {
   // const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
 
-  const { data, isLoading, isFetching, error } = useFetchPodcasts(query);
+  // const { data, isLoading, isFetching, error } = useFetchPodcasts(query);
+  const { data, isLoading, isFetching, error } = useFetchTopPodcasts();
 
-  console.log(data);
   const handleSelectedShow = (showId) => {
     const show = shows.find((show) => show.id === showId);
     setSelectedShow(show);
@@ -41,7 +45,8 @@ function App() {
         sideBarOpen={sideBarOpen}
         setSideBarOpen={setSideBarOpen}
       />
-      {data && data.results ? <SearchResults results={data.results} /> : null}
+      {/* {data && data.podcasts ? <SearchResults results={data.podcasts} /> : null} */}
+      {data && data.podcasts ? <PodcastList podcasts={data.podcasts} /> : null}
       {isLoading || isFetching ? <Loader /> : null}
       {/* {selectedShow && (
         <EpisodeList

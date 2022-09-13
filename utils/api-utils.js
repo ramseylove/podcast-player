@@ -52,7 +52,7 @@ export async function getEpisodes(url) {
 
 let apiHeaders;
 let BASE_API_URL;
-const apiProxy = "http://0.0.0.0:9999/";
+const apiProxy = "http://localhost:9999/";
 
 if (process.env.NEXT_PUBLIC_ENVIRONMENT === "development") {
   apiHeaders = {
@@ -73,9 +73,33 @@ const API = Axios.create({
   },
 });
 
+// const endpoints = {
+//   search:'/search',
+//   bestPodcasts: '/best_podcasts'
+// }
+
+const optionArr = {
+  genre_id: 93,
+  region: "us",
+  page: 1,
+  sort: "listen_score",
+};
+
 export const searchPodcasts = async (search = "") => {
   try {
     const response = await API.get(`/search?q=${search}`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchPodcasts = async (endpoint, options = { optionArr }) => {
+  try {
+    const response = await API.get(
+      `${endpoint}?genre_id=${options.genre_id}&region=${options.region}&page=${options.page}&sort=${options.sort}`
+    );
     console.log(response.data);
     return response.data;
   } catch (error) {
