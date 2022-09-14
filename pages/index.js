@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { search, topPodcasts } from "../utils/podcastApi";
 // Components
 import ShowList from "../components/show/ShowList";
 import EpisodeList from "../components/episode/EpisodeList";
@@ -9,20 +9,38 @@ import {
   useFetchPodcasts,
   useFetchTopPodcasts,
 } from "../hooks/useFetchPodcasts";
-import SearchResults from "../components/searchResults/SearchResults";
+
 import PodcastList from "../components/podcastList/PodcastList";
 
 function App() {
-  const [sideBarOpen, setSideBarOpen] = useState(true);
+  const [sideBarOpen, setSideBarOpen] = useState(false);
   const [shows, setShows] = useState([]);
   const [selectedShow, setSelectedShow] = useState(null);
   const [selectedEpisodePlaying, setSelectedEpisodePlaying] = useState(null);
   const [selectedEpisode, setSelectedEpisode] = useState();
-  // const [isLoading, setIsLoading] = useState(false);
-  const [query, setQuery] = useState("");
+  const [results, setResults] = useState({ podcasts: [] });
 
-  // const { data, isLoading, isFetching, error } = useFetchPodcasts(query);
-  const { data, isLoading, isFetching, error } = useFetchTopPodcasts();
+  const [query, setQuery] = useState(null);
+
+  const searchResults = useFetchPodcasts(["search", query], search, query);
+  const topPodcastList = useFetchPodcasts(
+    ["topPodcasts", { genre_id: 93 }],
+    topPodcasts,
+    {
+      genre_id: 93,
+    }
+  );
+  useEffect(() => {
+    console.log(query);
+    if (query && searchResults.data) {
+      setResults((prev) => (prev.podcasts = searchResults.data.results));
+    }
+
+    if (!query && topPodcastList.data) {
+      // console.log(topPodcastList);
+      setResults((prev) => (prev.podcasts = topPodcastList.data.podcasts));
+    }
+  }, [query, searchResults, topPodcastList]);
 
   const handleSelectedShow = (showId) => {
     const show = shows.find((show) => show.id === showId);
@@ -38,16 +56,16 @@ function App() {
         setQuery={setQuery}
       />
 
-      <ShowList
+      {/* <ShowList
         shows={shows}
         selectedShow={selectedShow}
         handleSelectedShow={handleSelectedShow}
         sideBarOpen={sideBarOpen}
         setSideBarOpen={setSideBarOpen}
-      />
-      {/* {data && data.podcasts ? <SearchResults results={data.podcasts} /> : null} */}
-      {data && data.podcasts ? <PodcastList podcasts={data.podcasts} /> : null}
-      {isLoading || isFetching ? <Loader /> : null}
+      /> */}
+      {/* {query ? <SearchResults query={query} /> : null} */}
+      {results ? <PodcastList podcasts={results} /> : null}
+      {/* {isLoading || isFetching ? <Loader /> : null} */}
       {/* {selectedShow && (
         <EpisodeList
           show={selectedShow}

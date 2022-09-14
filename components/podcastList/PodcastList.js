@@ -1,7 +1,6 @@
 import React from "react";
 
 const podcastList = ({ podcasts }) => {
-  console.log(podcasts);
   return (
     <ul>
       {podcasts.map((result) => (
