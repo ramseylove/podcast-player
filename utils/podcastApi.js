@@ -33,7 +33,7 @@ export const search = async (params) => {
   const param = buildParams(params);
 
   let response;
-  if (params.q) {
+  if (params.q !== "") {
     response = await Client.get("/search", { param });
   }
   response.data.results.forEach((result) => {
@@ -45,6 +45,11 @@ export const search = async (params) => {
 
 export const topPodcasts = async (params) => {
   const response = await Client.get("/best_podcasts", { params });
+  return response?.data;
+};
+
+export const getPodcast = async (id, params) => {
+  const response = await Client.get("/podcasts/" + id, { params });
   return response?.data;
 };
 

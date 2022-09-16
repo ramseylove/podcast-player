@@ -11,11 +11,8 @@ const SearchBar = ({ setQuery }) => {
 
     setText(value);
     timer.current = setTimeout(() => {
-      setQuery({ q: value });
+      setQuery(value);
     }, 550);
-    if (text === "") {
-      setQuery(null);
-    }
   };
   return (
     <Box

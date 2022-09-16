@@ -1,19 +1,6 @@
-import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box } from "@mui/material";
 
-import { EpisodePlayer, EpisodeWrapper } from "../episode/EpisodePlayer";
-import SearchBar from "./SearchBar";
-
-function Header({
-  selectedEpisodePlaying,
-  setSideBarOpen,
-  sideBarOpen,
-  setSelectedEpisode,
-  setQuery,
-}) {
-  const toggleDrawer = (sideBarOpen) => (event) => {
-    setSideBarOpen(sideBarOpen);
-  };
+function Header({ children }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -33,30 +20,7 @@ function Header({
           justifyContent: "space-between",
         }}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open navigation"
-            onClick={toggleDrawer(true)}
-            edge="start"
-            sx={{ mr: 2, ml: 1 }}
-          >
-            <MenuIcon sx={{ fontSize: 40 }} />
-          </IconButton>
-          <Typography variant="h5" component="h1">
-            Ultimate Podcasting
-          </Typography>
-        </Toolbar>
-        {setQuery ? <SearchBar setQuery={setQuery} /> : null}
-
-        <EpisodeWrapper>
-          {selectedEpisodePlaying && (
-            <EpisodePlayer
-              episode={selectedEpisodePlaying}
-              setSelectedEpisode={setSelectedEpisode}
-            />
-          )}
-        </EpisodeWrapper>
+        {children}
       </AppBar>
     </Box>
   );
