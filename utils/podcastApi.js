@@ -1,8 +1,8 @@
+import axios from "axios";
 import Axios from "axios";
 const API_BASE_PROD = "https://listen-api.listennotes.com/api/v2";
 
-const API_BASE_TEST =
-  "http://localhost:9999/https://listen-api-test.listennotes.com/api/v2";
+const API_BASE_TEST = "http://localhost:3000/api/listennotes";
 
 // export const endpoints = {
 //   search: async () =>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { search, topPodcasts } from "../utils/podcastApi";
+import { getTodos, search, topPodcasts } from "../utils/podcastApi";
 // Components
 import MainToolbar from "../components/MainToolbar/MainToolbar";
 import SearchBar from "../components/ui/SearchBar";
